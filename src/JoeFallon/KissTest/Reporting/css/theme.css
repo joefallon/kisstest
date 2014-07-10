@@ -1,0 +1,210 @@
+/* Container Width = 940px + 20px left margin */
+
+body
+{
+    color: #555555;
+}
+
+/*************************************************************
+ * Test Pass/Fail/Pending Styles
+ *************************************************************/
+.alert
+{
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.alert .alert-link
+{
+    font-weight: 700;
+}
+
+
+/* Alert Success, Test Success (i.e. green box, test pass) */
+.alert-success, .test-pass
+{
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #3C763D;
+}
+
+.alert-success .alert-link, .test-pass .test-link
+{
+    color: #2B542C;
+}
+
+
+/* Alert Info (i.e. blue box) */
+.alert-info
+{
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    color: #31708F;
+}
+
+.alert-info .alert-link
+{
+    color: #245269;
+}
+
+
+/* Alert Warning, Test Pending (i.e. yellow box, test not implemented) */
+.alert-warning, .test-pending
+{
+    background-color: #FCF8E3;
+    border-color: #FAEBCC;
+    color: #8A6D3B;
+}
+
+.alert-warning .alert-link, .test-pending  .test-link
+{
+    color: #66512C;
+}
+
+
+/* Alert Danger, Test Fail (i.e. red box, test fail) */
+.alert-danger, .test-fail
+{
+    background-color: #F2DEDE;
+    border-color: #EBCCD1;
+    color: #A94442;
+}
+
+.alert-danger .alert-link, .test-fail .test-link
+{
+    color: #843534;
+}
+
+
+/*************************************************************
+ * Header Styles
+ *************************************************************/
+#test-results-header
+{
+    height: 75px;
+}
+
+#test-results h3
+{
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+#test-results h5
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+/*************************************************************
+ * Table of Contents Styles
+ *************************************************************/
+
+.toc-link
+{
+    width: 295px;
+    display: block;
+    float: left;
+    margin: 2px 2px 0px 0px;
+    text-align: center;
+    padding: 2px 5px 2px 5px;
+}
+
+.toc-link a
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/*************************************************************
+ * Test Results Styles
+ *************************************************************/
+
+.top-link
+{
+
+}
+
+.top-link a
+{
+    color: #555555;
+    text-decoration: underline;
+    margin-right: 20px;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+td
+{
+    padding:0;
+    margin:0;
+}
+
+.test-set-name h4
+{
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.test-set-name div h5
+{
+}
+
+.test-set-line-items
+{
+    margin-bottom: 10px;
+}
+
+.test-case-line-item-number
+{
+    font: 16px Helvetica, Arial, sans-serif;
+    width: 35px;
+    height: 44px;
+    margin-top: 4px;
+}
+
+.test-case-line-item-name
+{
+    font: italic 16px Helvetica, Arial, sans-serif;
+    width: 650px;
+    height: 20px;
+    margin-top: 4px;
+    padding-left: 10px;
+    padding-top: 4px;
+}
+
+.test-case-line-item-msg
+{
+    font: 13px Helvetica, Arial, sans-serif;
+    padding-left: 20px;
+    height: 20px;
+}
+
+.test-case-line-item-metrics
+{
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 215px;
+    height: 34px;
+    margin-top: 4px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
+/*************************************************************
+ * Footer Styles
+ *************************************************************/
+
+#footer
+{
+    padding-top: 40px;
+}

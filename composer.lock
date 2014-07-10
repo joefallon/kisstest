@@ -1,0 +1,69 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "39d7f17689832a59e48d34e92ef62175",
+    "packages": [
+
+    ],
+    "packages-dev": [
+        {
+            "name": "joefallon/phpautoloader",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joefallon/phpautoloader.git",
+                "reference": "e14dc8a55ee400d31d4aab1d69f08f31015b0cd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/e14dc8a55ee400d31d4aab1d69f08f31015b0cd8",
+                "reference": "e14dc8a55ee400d31d4aab1d69f08f31015b0cd8",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JoeFallon": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Fallon",
+                    "email": "joseph.t.fallon@gmail.com",
+                    "homepage": "http://blog.joefallon.net/",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Joe's simple to use and versatile PHP autoloader.",
+            "homepage": "https://github.com/joefallon/phpautoloader",
+            "keywords": [
+                "autoloader",
+                "easy-to-use",
+                "kiss",
+                "php",
+                "psr-0"
+            ],
+            "time": "2014-07-10 23:05:16"
+        }
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": [
+
+    ]
+}

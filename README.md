@@ -203,6 +203,9 @@ When using the class `UnitTest`, a few rules need to be followed:
 *    A test is considered to have passed if it does not fail an assert,
      if `notImplementedFail()` is not called, or if `testFail()` was
      not called.
+*    When the name of the test case is displayed, all underscored are
+     changed to spaces. Therefore, your test case method names can read
+     just like sentences.
 
 #### Example Unit Test Class
 
@@ -230,7 +233,7 @@ class MilliTimespanTests extends UnitTest
         usleep(100);
         $actual   = $timespan->getElapsedTimeInMilliSec();
 
-        return $this->assertEqual($expected, $actual, "", 0.01);
+        $this->assertEqual($expected, $actual, "", 0.01);
     }
 
     public function test_elapsed_time_is_positive_if_started()
@@ -241,15 +244,140 @@ class MilliTimespanTests extends UnitTest
         $timespan->stopTimer();
         $elapsedTime = $timespan->getElapsedTimeInMilliSec();
 
-        return $this->assertFirstGreaterThanSecond($elapsedTime, 0.0);
+        $this->assertFirstGreaterThanSecond($elapsedTime, 0.0);
     }
 
     // more test cases here...
 }
 ```
 
+#### Assertion Methods in UnitTest
+
+The following assertion methods are available in the base class UnitTest:
+
+```php
+// $first    - First test operand
+// $second   - Second test operand
+// $failMsg  - Message to display on test failure
+// $maxDelta - Maximum allowable absolute difference between two operands
+//             when comparing floating point numbers for equality.
+// $value    - Test operand when only one exists (i.e. true/false asserts)
+
+assertEqual($first, $second, $failMsg="", $maxDelta=0.0)
+assertNotEqual($first, $second, $failMsg="")
+
+assertFirstGreaterThanSecond($first, $second, $failMsg="")
+assertFirstGreaterThanOrEqualSecond($first, $second, $failMsg="")
+
+assertFirstLessThanSecond($first, $second, $failMsg="")
+assertFirstLessThanOrEqualSecond($first, $second, $failMsg="")
+
+assertTrue($value, $failMsg="")
+assertFalse($value, $failMsg="")
+```
+
+#### Test Not Implemented
+
+Sometimes, a test method is created but the test mothod body has not been
+completed. In this case the method `notImplementedFail()` should be used.
+
+Here is an example of using `notImplementedFail()`:
+
+```php
+namespace tests\Example;
+
+use JoeFallon\Example\ClassUnderTest;
+use JoeFallon\KissTest\UnitTest;
+
+class ClassUnderTestTests extends UnitTest
+{
+    public function test_somehting()
+    {
+        $this->notImplementedFail();
+    }
+
+    // more test cases here...
+}
+```
+
+#### Test Setup and Teardown
+
+Sometimes a certain set of tasks will need to be performed every time a test is
+ran and another set of tasks will need to be performed everytime a test completes.
+For example, perhaps an object graph needs to be created and then torn down
+and it is used in every test. The empty methods (i.e. hooks) `setUp()` and
+`tearDown()` are exactly for this purpose.
+
+Here is an example of the test case setup and teardown:
+
+```php
+namespace tests\Example;
+
+use JoeFallon\Example\ClassUnderTest;
+use JoeFallon\KissTest\UnitTest;
+
+class ClassUnderTestTests extends UnitTest
+{
+    public function setUp()
+    {
+        // perform set up tasks before the start of each test case...
+    }
+
+    public function tearDown()
+    {
+        // perform tear down tasks after each test case is complete...
+    }
+
+    // test cases here...
+}
+```
+
+#### Testing for Exceptions
+
+Testing for exceptions is very easy. Here is an example of testing for an
+exception:
+
+```php
+namespace tests\Example;
+
+use JoeFallon\Example\ClassUnderTest;
+use JoeFallon\KissTest\UnitTest;
+
+class ClassUnderTestTests extends UnitTest
+{
+    public function test_exception_is_thrown()
+    {
+        try
+        {
+            // place test code that should throw exception here...
+        }
+        catch(Exception $e)
+        {
+            // An exception was thrown. Yay!
+            $this->testPass();
+            return;
+        }
+
+        $this->testFail();
+    }
+
+    // more test cases here...
+}
+```
 
 ### KissMock
+
+`KissMock` is an extremely simple to understand and extremely fast stubbing and
+mocking solution. All types of mocking and stubbing needs can be satisfied via
+its use.
+
+The use of KissMock requires the cooperation of three different classes:
+
+1.  The class under test.
+2.  The unit test class that contains the methods for testing the class under
+    test.
+3.  The mock/stub (the same class satisfies both needs) class for the class
+    under test.
 
 
 

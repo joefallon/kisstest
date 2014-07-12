@@ -119,7 +119,7 @@ suite, a unit test file and the associated production code file:
 ### Test Suite Specification (index.php)
 
 
-### Additional Configuration (config/main.php)
+### Additional Configuration (tests/config/main.php)
 
 
 Class Documentation

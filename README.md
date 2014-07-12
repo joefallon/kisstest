@@ -65,7 +65,7 @@ Since KissTest uses just PHP for configuration there are an infinite number of
 ways to configure and set up a test suite. The following method is simple and
 straight forward.
 
-First, create a directory structure like the following:
+Here is an example directory structure structure:
 
 ```
 ProjectDirectory
@@ -92,6 +92,8 @@ ProjectDirectory
        |
        +--> index.php                          <-- test suite definition
 ```
+
+Here is the directory for KissTest:
 
 ![KissTest Passing Tests](http://i.imgur.com/jetgmvG.png)
 

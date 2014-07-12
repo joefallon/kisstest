@@ -59,6 +59,34 @@ and run the `php composer.phar install` command to install it.
 }
 ```
 
+## Configuration and Test Setup
+
+Since KissTest uses just PHP for configuration there are an infinite number of
+ways to configure and set up a test suite. The following method is simple and
+straight forward.
+
+First, create a directory structure like the following:
+
+![KissTest Passing Tests](http://i.imgur.com/00NVsQC.png)
+
+Here we see where the source (a.k.a. "src") directory and "tests" directory
+and additional (optional) configuration file is created:
+
+![KissTest Passing Tests](http://i.imgur.com/w8GYKIJ.png)
+
+Here we see that the directory structure of the source code subtree and the
+unit test code subtree mirrors each other:
+
+![KissTest Passing Tests](http://i.imgur.com/NR5lm0x.png)
+
+Here we see the `index.php` file that defines the tests included in the test
+suite, a unit test file and the associated production code file:
+
+![KissTest Passing Tests](http://i.imgur.com/bORNvIz.png)
+
+
+
+
 
 
 

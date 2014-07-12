@@ -41,6 +41,10 @@ unit testing frameworks:
 *   All test suite setup is performed via plain PHP. No annotations. No XML. No JSON.
     No *.ini files. Just simeple, sweet, and to-the-point PHP.
 
+Here is an example containing some failing tests with some useful features annotated:
+
+![KissTest Passing Tests](http://i.imgur.com/1X3o4bB.png)
+
 ## Installation
 
 The easiest way to install KissTest is with

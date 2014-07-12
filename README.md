@@ -187,9 +187,9 @@ Class Documentation
 -------------------
 
 Only two classes are needed for all unit testing needs. The first is
-`UnitTest` and the second is `KissMock`. `UnitTest` is a class that
+`UnitTest` and the second is `Mock`. `UnitTest` is a class that
 all unit testing classes inherit from and that also contains all of
-the test cases. `KissMock` is a class that is used for all stubbing
+the test cases. `Mock` is a class that is used for all stubbing
 and all mocking. No other classes from the unit testing framework are
 needed.
 
@@ -365,13 +365,13 @@ class ClassUnderTestTests extends UnitTest
 }
 ```
 
-### KissMock
+### Mock
 
-`KissMock` is an extremely simple to understand and extremely fast stubbing and
+`Mock` is an extremely simple to understand and extremely fast stubbing and
 mocking solution. All types of mocking and stubbing needs can be satisfied via
 its use.
 
-The use of KissMock requires the cooperation of three different classes:
+The use of Mock requires the cooperation of three different classes:
 
 1.  The class under test.
 2.  The unit test class that contains the methods for testing the class under
@@ -379,5 +379,87 @@ The use of KissMock requires the cooperation of three different classes:
 3.  The mock/stub (the same class satisfies both needs) class for the class
     under test.
 
+Here is an example class under test:
+
+```php
+namespace MyProject;
+
+class ProductionClass
+{
+    public function exampleMethod(DependencyClass $dependency)
+    {
+        $param1 = 5;
+        $param2 = 'abc';
+        $result = $dependency->timeConsumingCalculation($param1, $param2);
+        
+        return $result;
+    }
+}
+```
+
+Here is the class that will be mocked out:
+
+```php
+namespace MyProject;
+
+class DependencyClass
+{
+    public function timeConsumingCalculation($param1, $param2)
+    {
+        // perform very time consuming calculations...
+        return 42;
+    }
+}
+```
+
+Here is the class `DependencyClass` fully mocked/stubbed out:
+
+```php
+namespace tests\MyProject;
+
+use MyProject\DependencyClass;
+use JoeFallong\KissTest\Mock;
+
+class DependencyClassMock extends DependencyClass
+{
+    public $_mock;
+
+    // Replace the default constructor.
+    public function __construct()
+    {
+        $this->_mock = new Mock();
+    }
+
+    public function timeConsumingCalculation($param1, $param2)
+    {
+        // The contents every public method is replaced with the
+        // following.
+        $args = array($param1, $param2);
+        return $this->_mock->methodCalled('timeConsumingCalculation', $args);
+    }
+}
+```
+
+Finally, here is the unit test that ties it all together:
+
+```php
+namespace tests\MyProject;
+
+use MyProject\DependencyClass;
+use JoeFallong\KissTest\Mock;
+use JoeFallong\KissTest\UnitTest;
+
+class DependencyClassTests extends UnitTest
+{
+    public function test_example_method_has_correct_object_interactions()
+    {
+        $dependencyClassMock = new DependencyClassMock();
+        $dependencyClassMock->setMethodReturnValue('timeConsumingCalculation', 42, 1);
+        $productionClass     = new ProductionClass();
+        $result = $productionClass->exampleMethod($dependencyClassMock);
+
+    }
+}
+```
 
 

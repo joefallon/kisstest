@@ -45,7 +45,8 @@ Here is an example containing some failing tests with some useful features annot
 
 ![KissTest Passing Tests](http://i.imgur.com/1X3o4bB.png)
 
-## Installation
+Installation
+------------
 
 The easiest way to install KissTest is with
 [Composer](https://getcomposer.org/). Create the following `composer.json` file
@@ -59,7 +60,10 @@ and run the `php composer.phar install` command to install it.
 }
 ```
 
-## Configuration and Test Setup
+Configuration and Test Setup
+----------------------------
+
+### Dirctory Structure
 
 Since KissTest uses just PHP for configuration there are an infinite number of
 ways to configure and set up a test suite. The following method is simple and
@@ -112,11 +116,20 @@ suite, a unit test file and the associated production code file:
 
 ![KissTest Passing Tests](http://i.imgur.com/tYkEA2o.png)
 
+### Test Suite Specification (index.php)
 
 
+### Additional Configuration (config/main.php)
 
 
+Class Documentation
+-------------------
 
+
+### UnitTest
+
+
+### KissMock
 
 
 

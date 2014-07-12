@@ -8,7 +8,7 @@ unit test library.
 
 Here is an example of some passing tests:
 
-[KissTest Passing Tests](http://i.imgur.com/xPJH6yn.png)
+![KissTest Passing Tests](http://i.imgur.com/xPJH6yn.png)
 
 It provides several useful features and benfits not available in other
 unit testing frameworks:

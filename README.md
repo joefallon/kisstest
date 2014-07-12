@@ -116,17 +116,137 @@ suite, a unit test file and the associated production code file:
 
 ![KissTest Passing Tests](http://i.imgur.com/tYkEA2o.png)
 
-### Test Suite Specification (index.php)
+### Test Suite Specification (tests/index.php)
 
+The test specification exists within the `index.php` file. Here is an example:
+
+```php
+use JoeFallon\KissTest\UnitTest;
+
+// Pull in the configuration for autoloading, database cleaning, etc.
+require('config/main.php');
+
+// Unit Test Files
+new tests\JoeFallon\KissTest\MockTests();
+new tests\JoeFallon\KissTest\Reporting\MilliTimespanTests();
+new tests\JoeFallon\KissTest\Reporting\SummaryTests();
+new tests\JoeFallon\KissTest\Reporting\TestCaseResultTests();
+new tests\JoeFallon\KissTest\Reporting\UnitTestResultTests();
+
+// more tests here...
+
+// Display the summary.
+UnitTest::getAllUnitTestsSummary();
+```
 
 ### Additional Configuration (tests/config/main.php)
 
+The configuration file (`tests/config/main.php`) is where the following
+is placed:
+
+*   Autoloding configuraiton
+*   Database cleaning
+*   Defining global constants (if any)
+
+Here is an example configuration file:
+
+```php
+use JoeFallon\Autoloader;
+use JoeFallon\Database\PdoFactory;
+
+// Define the include paths.
+define('BASE_PATH', realpath(dirname(__FILE__).'/../../'));
+define('SRC_PATH',  BASE_PATH.'/src');
+define('VEND_PATH', BASE_PATH.'/vendor');
+
+// Set the application include paths for autoloading.
+set_include_path(get_include_path().':'.SRC_PATH.':'.BASE_PATH);
+
+// Composer autoloading.
+require(VEND_PATH.'/autoload.php');
+
+// All other (i.e. non-composer) autoloading.
+Autoloader::registerAutoLoad();
+
+// Clean out the database. It's pleasantly fast.
+define('DB_HOST', 'localhost');
+define('DB_PORT', '3306');
+define('DB_USER', 'phplibrary_test');
+define('DB_PASS', 'phplibrary_test');
+define('DB_NAME', 'phplibrary_test');
+
+/** @var PDO $pdo */
+$pdo = PdoFactory::create(DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME);
+$pdo->exec('SET FOREIGN_KEY_CHECKS=0;');
+$pdo->exec('TRUNCATE TABLE `gtwy_tests`');
+$pdo->exec('TRUNCATE TABLE `join_tests`');
+$pdo->exec('SET FOREIGN_KEY_CHECKS=1;');
+```
 
 Class Documentation
 -------------------
 
+Only two classes are needed for all unit testing needs. The first is
+`UnitTest` and the second is `KissMock`. `UnitTest` is a class that
+all unit testing classes inherit from and that also contains all of
+the test cases. `KissMock` is a class that is used for all stubbing
+and all mocking. No other classes from the unit testing framework are
+needed.
 
 ### UnitTest
+
+When using the class `UnitTest`, a few rules need to be followed:
+
+*    Your unit test class must inherit from class `UnitTest`.
+*    The names of all unit test methods (i.e. test cases) must begin
+     with the string `test_`.
+*    A test is considered to have passed if it does not fail an assert,
+     if `notImplementedFail()` is not called, or if `testFail()` was
+     not called.
+
+#### Example Unit Test Class
+
+Here is an example unit test class:
+
+```php
+// It is recommened, but not at all required, to namespace the unit test class
+// with the same namespaces as the class under test except with the additional
+// namespace 'tests\' prefixed to the front. For example, the class under test
+// is in the namespace 'JoeFallon\KissTest\Reporting'. Therefore, the unit test
+// class is placed in the namespace 'tests\JoeFallon\KissTest\Reporting'.
+namespace tests\JoeFallon\KissTest\Reporting;
+
+// Class Under Test
+use JoeFallon\KissTest\Reporting\MilliTimespan;
+// Unit Test Base Class
+use JoeFallon\KissTest\UnitTest;
+
+class MilliTimespanTests extends UnitTest
+{
+    public function test_elapsed_time_is_always_zero_if_not_started()
+    {
+        $timespan = new MilliTimespan();
+        $expected = 0;
+        usleep(100);
+        $actual   = $timespan->getElapsedTimeInMilliSec();
+
+        return $this->assertEqual($expected, $actual, "", 0.01);
+    }
+
+    public function test_elapsed_time_is_positive_if_started()
+    {
+        $timespan = new MilliTimespan();
+        $timespan->startTimer();
+        usleep(100);
+        $timespan->stopTimer();
+        $elapsedTime = $timespan->getElapsedTimeInMilliSec();
+
+        return $this->assertFirstGreaterThanSecond($elapsedTime, 0.0);
+    }
+
+    // more test cases here...
+}
+```
 
 
 ### KissMock

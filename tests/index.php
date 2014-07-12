@@ -6,6 +6,8 @@
  *
  * @license   MIT
  */
+use JoeFallon\KissTest\UnitTest;
+
 require('config/main.php');
 
 new tests\JoeFallon\KissTest\MockTests();
@@ -14,4 +16,4 @@ new tests\JoeFallon\KissTest\Reporting\SummaryTests();
 new tests\JoeFallon\KissTest\Reporting\TestCaseResultTests();
 new tests\JoeFallon\KissTest\Reporting\UnitTestResultTests();
 
-\JoeFallon\KissTest\UnitTest::getAllUnitTestsSummary();
+UnitTest::getAllUnitTestsSummary();

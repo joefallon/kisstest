@@ -10,7 +10,7 @@ Here is an example of some passing tests:
 
 ![KissTest Passing Tests](http://i.imgur.com/xPJH6yn.png)
 
-It provides several useful features and benfits not available in other
+It provides several useful features and benefits not available in other
 unit testing frameworks:
 
 *   The display of the testing results is completely displayed right
@@ -33,13 +33,13 @@ unit testing frameworks:
     always a great practice.
 *   It's fast. Really fast. No code injection, dynamic class modification,
     or eval is used anywhere. The testing framework is light and nimble.
-*   Easy to understand. Do you have a new devloper on your team that is a
-    little green and inexperienced? No problem, this testing framework is
-    learnable in 10-15 minutes.
+*   Easy to understand. Do you have a new developer on your team that is a
+    little green and inexperienced? No problem, this testing framework can
+    be learned in 10-15 minutes.
 *   A full mocking and class stubbing solution is included as well.
 *   The mocking/stubbing functionality is simple and fast. Really fast.
 *   All test suite setup is performed via plain PHP. No annotations. No XML. No JSON.
-    No *.ini files. Just simeple, sweet, and to-the-point PHP.
+    No *.ini files. Just simple, sweet, and to-the-point PHP.
 
 Here is an example containing some failing tests with some useful features annotated:
 
@@ -63,7 +63,7 @@ and run the `php composer.phar install` command to install it.
 Configuration and Test Setup
 ----------------------------
 
-### Dirctory Structure
+### Directory Structure
 
 Since KissTest uses just PHP for configuration there are an infinite number of
 ways to configure and set up a test suite. The following method is simple and
@@ -212,7 +212,7 @@ When using the class `UnitTest`, a few rules need to be followed:
 Here is an example unit test class:
 
 ```php
-// It is recommened, but not at all required, to namespace the unit test class
+// It is recommend, but not at all required, to namespace the unit test class
 // with the same namespaces as the class under test except with the additional
 // namespace 'tests\' prefixed to the front. For example, the class under test
 // is in the namespace 'JoeFallon\KissTest\Reporting'. Therefore, the unit test
@@ -278,7 +278,7 @@ assertFalse($value, $failMsg="")
 
 #### Test Not Implemented
 
-Sometimes, a test method is created but the test mothod body has not been
+Sometimes, a test method is created but the test method body has not been
 completed. In this case the method `notImplementedFail()` should be used.
 
 Here is an example of using `notImplementedFail()`:
@@ -303,12 +303,12 @@ class ClassUnderTestTests extends UnitTest
 #### Test Setup and Teardown
 
 Sometimes a certain set of tasks will need to be performed every time a test is
-ran and another set of tasks will need to be performed everytime a test completes.
+ran and another set of tasks will need to be performed every time a test completes.
 For example, perhaps an object graph needs to be created and then torn down
 and it is used in every test. The empty methods (i.e. hooks) `setUp()` and
 `tearDown()` are exactly for this purpose.
 
-Here is an example of the test case setup and teardown:
+Here is an example of the test case setup and tear down:
 
 ```php
 namespace tests\Example;
@@ -391,7 +391,7 @@ class ProductionClass
         $param1 = 5;
         $param2 = 'abc';
         $result = $dependency->timeConsumingCalculation($param1, $param2);
-        
+
         return $result;
     }
 }
@@ -453,13 +453,30 @@ class DependencyClassTests extends UnitTest
 {
     public function test_example_method_has_correct_object_interactions()
     {
-        $dependencyClassMock = new DependencyClassMock();
-        $dependencyClassMock->setMethodReturnValue('timeConsumingCalculation', 42, 1);
-        $productionClass     = new ProductionClass();
-        $result = $productionClass->exampleMethod($dependencyClassMock);
+        // Create the mock and specify how it should behave.
+        $mock = new DependencyClassMock();
+        $mock->setMethodReturnValue('timeConsumingCalculation', 42);
 
+        // Create the class under test.
+        $productionClass = new ProductionClass();
+        $result = $productionClass->exampleMethod($mock);
+
+        // Assert the return value matches what is expected.
+        $this->assertEqual(42, $result);
+
+        // Assert the method was called exactly once.
+        $callCount = $mock->_mock->getMethodCallCount('timeConsumingCalculation');
+        $this->assertEqual(1, $callCount);
+
+        // Assert the proper arguments were passed to the method.
+        $args = $mock->_mock->getMethodArgs('timeConsumingCalculation', 1);
+        $this->assertEqual(5,     $args[0]);
+        $this->assertEqual('abc', $args[0]);
     }
 }
 ```
 
+The mocks can be used as stubs by simply not asserting on any of the methods in
+the instance of `Mock` held by the mock.stub class. Since no reflection, eval,
+or injection is used, the mock/stub classes are extremely fast.
 

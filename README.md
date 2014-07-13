@@ -231,7 +231,7 @@ class MilliTimespanTests extends UnitTest
         $timespan = new MilliTimespan();
         $expected = 0;
         usleep(100);
-        $actual   = $timespan->getElapsedTimeInMilliSec();
+        $actual = $timespan->getElapsedTimeInMilliSec();
 
         $this->assertEqual($expected, $actual, "", 0.01);
     }
@@ -471,7 +471,7 @@ class DependencyClassTests extends UnitTest
         // Assert the proper arguments were passed to the method.
         $args = $mock->_mock->getMethodArgs('timeConsumingCalculation', 1);
         $this->assertEqual(5,     $args[0]);
-        $this->assertEqual('abc', $args[0]);
+        $this->assertEqual('abc', $args[1]);
     }
 }
 ```

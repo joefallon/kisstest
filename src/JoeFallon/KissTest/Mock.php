@@ -1,16 +1,14 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace JoeFallon\KissTest;
 
 use Exception;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ * @package   JoeFallon\KissTest
+ */
 class Mock
 {
     /** @var array */
@@ -38,11 +36,11 @@ class Mock
      *
      * @return null
      */
-    public function methodCalled($methodName, $args=null)
+    public function methodCalled($methodName, $args = null)
     {
         $this->_methodCalls[] = array(
-            'name' => $methodName,
-            'args' => $args
+          'name' => $methodName,
+          'args' => $args
         );
 
         $callCount = $this->getMethodCallCount($methodName);
@@ -99,7 +97,7 @@ class Mock
      * @return mixed
      * @throws \Exception
      */
-    public function getMethodArgs($methodName, $callCount=1)
+    public function getMethodArgs($methodName, $callCount = 1)
     {
         $methodName = strval($methodName);
         $callCount  = intval($callCount);
@@ -132,8 +130,8 @@ class Mock
             }
         }
 
-        $msg = 'The given call count is less than the number of '
-            . 'times the method was called.';
+        $msg  = 'The given call count is less than the number of ';
+        $msg .= 'times the method was called.';
         $msg .= ' Method Name = ' . $methodName . ', ';
         $msg .= ' Given Call Count = ' . $callCount . ', ';
         $msg .= ' Actual Call Count = ' . $count;
@@ -149,7 +147,9 @@ class Mock
      *
      * @throws \Exception
      */
-    public function setMethodReturnValue($methodName, $returnVal=null, $callCount=null)
+    public function setMethodReturnValue($methodName,
+                                         $returnVal = null,
+                                         $callCount = null)
     {
         $methodName = strval($methodName);
         $callCount  = intval($callCount);
@@ -160,7 +160,7 @@ class Mock
             throw new Exception($msg);
         }
 
-        $r = &$this->_methodReturnValues;
+        $r     = & $this->_methodReturnValues;
         $count = count($r);
 
         for($i = 0; $i < $count; $i++)
@@ -168,15 +168,16 @@ class Mock
             if($r[$i]['name'] == $methodName && $r[$i]['callCount'] == $callCount)
             {
                 $r[$i]['return'] = $returnVal;
+
                 return;
             }
         }
 
 
         $r[] = array(
-            'name'      => $methodName,
-            'return'    => $returnVal,
-            'callCount' => $callCount
+          'name'      => $methodName,
+          'return'    => $returnVal,
+          'callCount' => $callCount
         );
     }
 

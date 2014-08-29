@@ -1,9 +1,9 @@
 {
-    "name": "joefallon/kisstest",
+    "name": "joefallon/KissTest",
     "type": "library",
     "description": "KissTest is a gorgeous and fast unit testing framework for PHP that does not require use of the command line.",
     "keywords": [ "unit-test", "xunit", "test" ],
-    "homepage": "https://github.com/joefallon/kisstest",
+    "homepage": "https://github.com/joefallon/KissTest",
     "license": "MIT",
     "authors": [
         {

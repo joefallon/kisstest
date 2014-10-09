@@ -4,23 +4,23 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5ec34139fd20e6a31190a05a6fcb9577",
+    "hash": "2dc7c5fa737b0b9424850c0e399ea2c4",
     "packages": [
 
     ],
     "packages-dev": [
         {
             "name": "joefallon/phpautoloader",
-            "version": "v1.0.1",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joefallon/phpautoloader.git",
-                "reference": "e14dc8a55ee400d31d4aab1d69f08f31015b0cd8"
+                "reference": "ff385fb52f7dab6c9f6bde53bf54281081bdb674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/e14dc8a55ee400d31d4aab1d69f08f31015b0cd8",
-                "reference": "e14dc8a55ee400d31d4aab1d69f08f31015b0cd8",
+                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/ff385fb52f7dab6c9f6bde53bf54281081bdb674",
+                "reference": "ff385fb52f7dab6c9f6bde53bf54281081bdb674",
                 "shasum": ""
             },
             "type": "library",
@@ -44,13 +44,12 @@
             "description": "Joe's simple to use and versatile PHP autoloader.",
             "homepage": "https://github.com/joefallon/phpautoloader",
             "keywords": [
+                "Simple",
                 "autoloader",
-                "easy-to-use",
-                "kiss",
-                "php",
+                "namespace",
                 "psr-0"
             ],
-            "time": "2014-07-10 23:05:16"
+            "time": "2014-09-22 23:00:17"
         }
     ],
     "aliases": [
@@ -60,6 +59,7 @@
     "stability-flags": [
 
     ],
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.0"
     },

@@ -7,7 +7,6 @@ use Exception;
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
- * @package   JoeFallon\KissTest
  */
 class Mock
 {
@@ -39,8 +38,8 @@ class Mock
     public function methodCalled($methodName, $args = null)
     {
         $this->_methodCalls[] = array(
-          'name' => $methodName,
-          'args' => $args
+            'name' => $methodName,
+            'args' => $args
         );
 
         $callCount = $this->getMethodCallCount($methodName);
@@ -57,7 +56,7 @@ class Mock
      * @param string $methodName
      *
      * @return int
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMethodCallCount($methodName)
     {
@@ -95,7 +94,7 @@ class Mock
      * @param int    $callCount
      *
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public function getMethodArgs($methodName, $callCount = 1)
     {
@@ -130,7 +129,7 @@ class Mock
             }
         }
 
-        $msg  = 'The given call count is less than the number of ';
+        $msg = 'The given call count is less than the number of ';
         $msg .= 'times the method was called.';
         $msg .= ' Method Name = ' . $methodName . ', ';
         $msg .= ' Given Call Count = ' . $callCount . ', ';
@@ -145,7 +144,7 @@ class Mock
      * @param null   $returnVal
      * @param null   $callCount
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function setMethodReturnValue($methodName,
                                          $returnVal = null,
@@ -160,7 +159,7 @@ class Mock
             throw new Exception($msg);
         }
 
-        $r     = & $this->_methodReturnValues;
+        $r     = &$this->_methodReturnValues;
         $count = count($r);
 
         for($i = 0; $i < $count; $i++)
@@ -175,9 +174,9 @@ class Mock
 
 
         $r[] = array(
-          'name'      => $methodName,
-          'return'    => $returnVal,
-          'callCount' => $callCount
+            'name'      => $methodName,
+            'return'    => $returnVal,
+            'callCount' => $callCount
         );
     }
 
@@ -187,7 +186,7 @@ class Mock
      * @param null   $callCount
      *
      * @return null
-     * @throws \Exception
+     * @throws Exception
      */
     private function getMethodReturnValue($methodName, $callCount = null)
     {

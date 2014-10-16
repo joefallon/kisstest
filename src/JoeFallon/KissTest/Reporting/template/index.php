@@ -263,8 +263,7 @@
         select
         {
             background-color:   #fff;
-            border-width:       1px;
-            border-style:       solid;
+            border: 1px solid;
         }
 
         input[type=text],

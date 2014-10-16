@@ -1,17 +1,14 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\MilliTimespan;
 use JoeFallon\KissTest\UnitTest;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 class MilliTimespanTests extends UnitTest
 {
     public function test_elapsed_time_is_always_zero_if_not_started()

@@ -2,8 +2,8 @@
 
 <div class="row test-set-name">
     <div class="span12">
-        <a name="<?= str_replace('\\', '-', $result->getUnitTestName());?>"></a>
-        <h4><?=$result->getUnitTestName();?></h4>
+        <a name="<?php echo str_replace('\\', '-', $result->getUnitTestName());?>"></a>
+        <h4><?php echo $result->getUnitTestName();?></h4>
     </div>
 </div>
 <div class="row">

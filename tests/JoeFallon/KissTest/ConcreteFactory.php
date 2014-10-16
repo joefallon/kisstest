@@ -7,7 +7,6 @@ use JoeFallon\KissTest\AbstractFactory;
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
- * @package   tests\JoeFallon\KissTest
  */
 class ConcreteFactory extends AbstractFactory
 {

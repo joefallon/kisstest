@@ -1,17 +1,14 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\UnitTest;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 class TestCaseResultTests extends UnitTest
 {
     public function test_execution_time_always_greater_than_or_equal_to_zero()

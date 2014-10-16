@@ -1,15 +1,13 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\MilliTimespan;
 
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 class MilliTimespanMock extends MilliTimespan
 {
     public $_startTimerCalled;

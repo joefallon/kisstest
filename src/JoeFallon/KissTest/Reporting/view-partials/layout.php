@@ -18,7 +18,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Unit Tests | <?= $sumarry_result_status ?></title>
+    <title>Unit Tests | <?php echo $sumarry_result_status ?></title>
 
     <style media="screen" type="text/css">
     <?php require_once(realpath(dirname(__FILE__) . '/../css/bootstrap-custom.css')); ?>
@@ -102,7 +102,7 @@
 
         <div id="footer" class="row">
             <div class="span12">
-                KissTest &copy;<?= date("Y"); ?> Joe Fallon, All Rights Reserved.
+                KissTest &copy;<?php echo date("Y"); ?> Joe Fallon, All Rights Reserved.
             </div>
         </div>
     </div>

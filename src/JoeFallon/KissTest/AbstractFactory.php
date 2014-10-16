@@ -7,7 +7,6 @@ use Exception;
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
- * @package   JoeFallon\KissTest
  */
 abstract class AbstractFactory
 {
@@ -54,12 +53,13 @@ abstract class AbstractFactory
         return $num;
     }
 
+
     /**
      * This function instiantiates the desired class fills it with data
      * and returns it. It does not persist the instance.
      *
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public static function create()
     {
@@ -73,7 +73,7 @@ abstract class AbstractFactory
      * build dependendent classes that any foreign keys point to.
      *
      * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
     public static function build()
     {

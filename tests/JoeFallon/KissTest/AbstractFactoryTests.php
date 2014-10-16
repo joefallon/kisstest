@@ -8,7 +8,6 @@ use JoeFallon\KissTest\UnitTest;
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
- * @package   tests\JoeFallon\KissTest
  */
 class AbstractFactoryTests extends UnitTest
 {

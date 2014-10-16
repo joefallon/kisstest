@@ -1,14 +1,11 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace JoeFallon\KissTest\Reporting;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 class Summary
 {
     /** @var array */

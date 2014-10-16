@@ -1,16 +1,15 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
 use JoeFallon\KissTest\UnitTest;
+
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 
 class UnitTestResultTests extends UnitTest
 {

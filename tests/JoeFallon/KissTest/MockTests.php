@@ -1,17 +1,15 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace tests\JoeFallon\KissTest;
 
 use Exception;
 use JoeFallon\KissTest\Mock;
 use JoeFallon\KissTest\UnitTest;
 
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 
 class MockTests extends UnitTest
 {

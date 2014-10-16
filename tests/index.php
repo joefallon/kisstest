@@ -1,12 +1,11 @@
 <?php
+use JoeFallon\KissTest\UnitTest;
+
 /**
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
  * @license   MIT
  */
-use JoeFallon\KissTest\UnitTest;
 
 require('config/main.php');
 

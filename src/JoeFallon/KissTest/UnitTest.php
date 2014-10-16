@@ -1,11 +1,5 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
+
 namespace JoeFallon\KissTest;
 
 require_once('Reporting/MilliTimespan.php');
@@ -20,7 +14,11 @@ use JoeFallon\KissTest\Reporting\Summary;
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 class UnitTest
 {
     /** @var string */
@@ -62,14 +60,14 @@ class UnitTest
      * The setUp method is executed before each test method is called and is
      * useful to locate code that should be run before each test.
      */
-    protected function setUp(){}
+    protected function setUp() { }
 
 
     /**
      * The tearDown method is executed after each test method is called and is
      * useful to locate code that should be run after each test.
      */
-    protected function tearDown(){}
+    protected function tearDown() { }
 
 
     /**
@@ -100,7 +98,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertEqual($first, $second, $failMsg="", $maxDelta=0.0)
+    protected function assertEqual($first, $second, $failMsg = "", $maxDelta = 0.0)
     {
         $this->_assertCount++;
 
@@ -132,9 +130,9 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = '     . $this->convertValueToString($first)
-                 . ', $second = '  . $this->convertValueToString($second)
-                 . ', $failMsg = ' . $failMsg;
+        $message = '$first = ' . $this->convertValueToString($first)
+                   . ', $second = ' . $this->convertValueToString($second)
+                   . ', $failMsg = ' . $failMsg;
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -151,7 +149,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertNotEqual($first, $second, $failMsg="")
+    protected function assertNotEqual($first, $second, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -163,7 +161,7 @@ class UnitTest
         }
 
 
-        if($first !=  $second)
+        if($first != $second)
         {
             $this->_currentTestCase->setMessage('');
             $this->_currentTestCase->setTestPassed();
@@ -171,9 +169,9 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = '     . $this->convertValueToString($first)
-                 . ', $second = '  . $this->convertValueToString($second)
-                 . ', $failMsg = ' . $failMsg;
+        $message = '$first = ' . $this->convertValueToString($first)
+                   . ', $second = ' . $this->convertValueToString($second)
+                   . ', $failMsg = ' . $failMsg;
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -190,7 +188,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertFirstGreaterThanSecond($first, $second, $failMsg="")
+    protected function assertFirstGreaterThanSecond($first, $second, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -209,9 +207,9 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = '     . $this->convertValueToString($first)
-                 . ', $second = '  . $this->convertValueToString($second)
-                 . ', $failMsg = ' . $failMsg;
+        $message = '$first = ' . $this->convertValueToString($first)
+                   . ', $second = ' . $this->convertValueToString($second)
+                   . ', $failMsg = ' . $failMsg;
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -228,7 +226,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertFirstGreaterThanOrEqualSecond($first, $second, $failMsg="")
+    protected function assertFirstGreaterThanOrEqualSecond($first, $second, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -239,7 +237,7 @@ class UnitTest
             return false;
         }
 
-        if($first >=  $second)
+        if($first >= $second)
         {
             $this->_currentTestCase->setMessage('');
             $this->_currentTestCase->setTestPassed();
@@ -247,9 +245,9 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = '     . $this->convertValueToString($first)
-                 . ', $second = '  . $this->convertValueToString($second)
-                 . ', $failMsg = ' . $failMsg;
+        $message = '$first = ' . $this->convertValueToString($first)
+                   . ', $second = ' . $this->convertValueToString($second)
+                   . ', $failMsg = ' . $failMsg;
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -266,7 +264,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertFirstLessThanSecond($first, $second, $failMsg="")
+    protected function assertFirstLessThanSecond($first, $second, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -277,7 +275,7 @@ class UnitTest
             return false;
         }
 
-        if($first <  $second)
+        if($first < $second)
         {
             $this->_currentTestCase->setMessage('');
             $this->_currentTestCase->setTestPassed();
@@ -285,9 +283,9 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = '     . $this->convertValueToString($first)
-                 . ', $second = '  . $this->convertValueToString($second)
-                 . ', $failMsg = ' . $failMsg;
+        $message = '$first = ' . $this->convertValueToString($first)
+                   . ', $second = ' . $this->convertValueToString($second)
+                   . ', $failMsg = ' . $failMsg;
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -304,7 +302,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertFirstLessThanOrEqualSecond($first, $second, $failMsg="")
+    protected function assertFirstLessThanOrEqualSecond($first, $second, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -315,7 +313,7 @@ class UnitTest
             return false;
         }
 
-        if($first <=  $second)
+        if($first <= $second)
         {
             $this->_currentTestCase->setMessage('');
             $this->_currentTestCase->setTestPassed();
@@ -323,9 +321,9 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = '     . $this->convertValueToString($first)
-                 . ', $second = '  . $this->convertValueToString($second)
-                 . ', $failMsg = ' . $failMsg;
+        $message = '$first = ' . $this->convertValueToString($first)
+                   . ', $second = ' . $this->convertValueToString($second)
+                   . ', $failMsg = ' . $failMsg;
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -342,7 +340,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function assertTrue($value, $failMsg="")
+    protected function assertTrue($value, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -356,7 +354,7 @@ class UnitTest
         if($value == false)
         {
             $message = 'The provided value is false.'
-                     . ', $failMsg = ' . $failMsg;
+                       . ', $failMsg = ' . $failMsg;
             $this->_currentTestCase->setMessage($message);
             $this->_currentTestCase->setTestFailed();
 
@@ -374,12 +372,12 @@ class UnitTest
      * Assert False - This assert will fail if the $value provided is not
      * false.
      *
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $failMsg
      *
      * @return bool
      */
-    protected function assertFalse($value, $failMsg="")
+    protected function assertFalse($value, $failMsg = "")
     {
         $this->_assertCount++;
 
@@ -393,8 +391,8 @@ class UnitTest
         if($value == true)
         {
             $message = 'The provided value is true ($value = '
-                . $this->convertValueToString($value)
-                . ', $failMsg = ' . $failMsg . ').';
+                       . $this->convertValueToString($value)
+                       . ', $failMsg = ' . $failMsg . ').';
             $this->_currentTestCase->setMessage($message);
             $this->_currentTestCase->setTestFailed();
 
@@ -437,7 +435,7 @@ class UnitTest
      *
      * @return bool
      */
-    protected function testFail($message='')
+    protected function testFail($message = '')
     {
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 

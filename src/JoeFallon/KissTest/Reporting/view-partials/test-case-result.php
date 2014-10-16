@@ -21,15 +21,15 @@ if($current->getTestStatus() == true)
         <?php echo ($i + 1) ?>.
     </td>
     <td>
-        <div class="test-case-line-item-name <?= $testResult; ?>">
+        <div class="test-case-line-item-name <?php echo $testResult; ?>">
             <?php echo $current->getTestCaseName(); ?>
         </div>
-        <div class="test-case-line-item-msg <?= $testResult; ?>">
+        <div class="test-case-line-item-msg <?php echo $testResult; ?>">
             <?php echo $current->getMessage(); ?>
         </div>
     </td>
     <td>
-        <div class="test-case-line-item-metrics text-right <?= $testResult; ?>">
+        <div class="test-case-line-item-metrics text-right <?php echo $testResult; ?>">
             <?php printf("%.2f", $current->getExecutionTimeInMillisecs()); ?> mSecs,
             Asserts: <?php echo number_format($current->getAssertCount()); ?>
         </div>

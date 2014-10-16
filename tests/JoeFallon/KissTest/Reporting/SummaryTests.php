@@ -1,11 +1,4 @@
 <?php
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\Summary;
@@ -13,7 +6,11 @@ use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
 use JoeFallon\KissTest\UnitTest;
 
-
+/**
+ * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
+ * @license   MIT
+ */
 class SummaryTests extends UnitTest
 {
     public function test_adding_unittest_result_returns_correct_count()

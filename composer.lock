@@ -4,10 +4,8 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2dc7c5fa737b0b9424850c0e399ea2c4",
-    "packages": [
-
-    ],
+    "hash": "5ec34139fd20e6a31190a05a6fcb9577",
+    "packages": [],
     "packages-dev": [
         {
             "name": "joefallon/phpautoloader",
@@ -52,18 +50,12 @@
             "time": "2014-09-22 23:00:17"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
     "prefer-stable": false,
     "platform": {
         "php": ">=5.3.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }

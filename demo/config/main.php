@@ -6,7 +6,7 @@
  *
  * @license   MIT
  */
-use JoeFallon\Autoloader;
+use JoeFallon\AutoLoader;
 
 define('BASE_PATH', realpath(dirname(__FILE__).'/../../'));
 define('DEMO_PATH', BASE_PATH.'/demo');
@@ -16,4 +16,4 @@ define('VEND_PATH', BASE_PATH.'/vendor');
 require_once(VEND_PATH . '/autoload.php');
 
 set_include_path(get_include_path().':'.DEMO_PATH.':'.SRC_PATH);
-Autoloader::registerAutoLoad();
+AutoLoader::registerAutoLoad();

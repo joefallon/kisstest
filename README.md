@@ -144,7 +144,7 @@ UnitTest::getAllUnitTestsSummary();
 The configuration file (`tests/config/main.php`) is where the following
 is placed:
 
-*   Autoloding configuraiton
+*   Autoloading configuration
 *   Database cleaning
 *   Defining global constants (if any)
 
@@ -201,11 +201,11 @@ When using the class `UnitTest`, a few rules need to be followed:
 *    The names of all unit test methods (i.e. test cases) must begin
      with the string `test_`.
 *    A test is considered to have passed if it does not fail an assert,
-     if `notImplementedFail()` is not called, or if `testFail()` was
+     or `notImplementedFail()` is not called, or `testFail()` was
      not called.
-*    When the name of the test case is displayed, all underscored are
+*    When the name of the test case is displayed, all underscores are
      changed to spaces. Therefore, your test case method names can read
-     just like sentences.
+     just like sentences when they are viewed in the browser.
 
 #### Example Unit Test Class
 
@@ -291,7 +291,7 @@ use JoeFallon\KissTest\UnitTest;
 
 class ClassUnderTestTests extends UnitTest
 {
-    public function test_somehting()
+    public function test_something()
     {
         $this->notImplementedFail();
     }
@@ -418,7 +418,7 @@ Here is the class `DependencyClass` fully mocked/stubbed out:
 namespace tests\MyProject;
 
 use MyProject\DependencyClass;
-use JoeFallong\KissTest\Mock;
+use JoeFallon\KissTest\Mock;
 
 class DependencyClassMock extends DependencyClass
 {
@@ -446,8 +446,8 @@ Finally, here is the unit test that ties it all together:
 namespace tests\MyProject;
 
 use MyProject\DependencyClass;
-use JoeFallong\KissTest\Mock;
-use JoeFallong\KissTest\UnitTest;
+use JoeFallon\KissTest\Mock;
+use JoeFallon\KissTest\UnitTest;
 
 class DependencyClassTests extends UnitTest
 {

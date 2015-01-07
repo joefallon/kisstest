@@ -4,21 +4,21 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "36830425fcf5d87cfc4d2e81b5a9f0d8",
+    "hash": "0a3b4fa749e4441479f83be73adb9aa8",
     "packages": [],
     "packages-dev": [
         {
             "name": "joefallon/phpautoloader",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joefallon/phpautoloader.git",
-                "reference": "bae8db9f3327d44f8231f6ac414d00f9511f1dc4"
+                "reference": "79284475b671923f91f1af9286204b3821b08298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/bae8db9f3327d44f8231f6ac414d00f9511f1dc4",
-                "reference": "bae8db9f3327d44f8231f6ac414d00f9511f1dc4",
+                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/79284475b671923f91f1af9286204b3821b08298",
+                "reference": "79284475b671923f91f1af9286204b3821b08298",
                 "shasum": ""
             },
             "type": "library",
@@ -47,13 +47,14 @@
                 "namespace",
                 "psr-0"
             ],
-            "time": "2014-10-20 14:58:35"
+            "time": "2014-12-28 15:32:10"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.0"
     },

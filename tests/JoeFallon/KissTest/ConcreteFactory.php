@@ -12,7 +12,7 @@ class ConcreteFactory extends AbstractFactory
 {
 
     /**
-     * This function instiantiates the desired class fills it with data
+     * This function instantiates the desired class fills it with data
      * and returns it. It does not persist the instance.
      *
      * @return mixed
@@ -23,9 +23,9 @@ class ConcreteFactory extends AbstractFactory
     }
 
     /**
-     * This function instiantiates the desired class fills it with data,
+     * This function instantiates the desired class fills it with data,
      * persists it to the database and returns it. Additionally, it should
-     * build dependendent classes that any foreign keys point to.
+     * build dependent classes that any foreign keys point to.
      *
      * @return mixed
      */

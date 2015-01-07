@@ -135,7 +135,6 @@ class Summary
         return $percentPassed;
     }
 
-
     /**
      * @return float
      */

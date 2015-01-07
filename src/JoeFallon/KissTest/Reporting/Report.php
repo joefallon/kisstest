@@ -13,7 +13,7 @@ class Report
 
 
     /**
-     * Class Constructr
+     * Class Constructor
      * 
      * @param Summary $summary
      */

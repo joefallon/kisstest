@@ -50,7 +50,7 @@ class Mock
 
 
     /**
-     * This method returns the number of times the sepcified method has
+     * This method returns the number of times the specified method has
      * been called.
      *
      * @param string $methodName
@@ -86,7 +86,7 @@ class Mock
     /**
      * This method returns the arguments supplied to a method for
      * the specified call count of the method. For example, to retrieve
-     * the arguments supplied to a method on the thrid time it was
+     * the arguments supplied to a method on the third time it was
      * called, use a $callCount of 3. The supplied arguments are
      * returned in the form of an array.
      *
@@ -129,7 +129,7 @@ class Mock
             }
         }
 
-        $msg = 'The given call count is less than the number of ';
+        $msg  = 'The given call count is less than the number of ';
         $msg .= 'times the method was called.';
         $msg .= ' Method Name = ' . $methodName . ', ';
         $msg .= ' Given Call Count = ' . $callCount . ', ';

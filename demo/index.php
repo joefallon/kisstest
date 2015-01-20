@@ -8,11 +8,6 @@
  */
 require('config/main.php');
 
-$filter = new PHP_CodeCoverage_Filter();
-$filter->addDirectoryToBlacklist(realpath('../vendor/'));
-$coverage = new PHP_CodeCoverage(null, $filter);
-$coverage->start('All');
-
 use JoeFallon\KissTest\UnitTest;
 
 new MocksUsage();
@@ -22,7 +17,3 @@ new AnotherDummyTest();
 
 
 UnitTest::getAllUnitTestsSummary();
-
-$coverage->stop();
-$writer = new PHP_CodeCoverage_Report_HTML();
-$writer->process($coverage, __DIR__.'/cov');

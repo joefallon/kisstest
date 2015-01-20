@@ -30,7 +30,7 @@ body
     color: #3C763D;
 }
 
-.alert-success .alert-link, .test-pass .test-link, .test-pass .cov-link
+.alert-success .alert-link, .test-pass .test-link
 {
     color: #2B542C;
 }
@@ -72,7 +72,7 @@ body
     color: #A94442;
 }
 
-.alert-danger .alert-link, .test-fail .test-link,  .test-fail .cov-link
+.alert-danger .alert-link, .test-fail .test-link
 {
     color: #843534;
 }
@@ -87,12 +87,6 @@ body
 }
 
 #test-results h3
-{
-    margin: 5px 0 0 0;
-    padding: 0;
-}
-
-#test-results h4
 {
     margin: 5px 0 0 0;
     padding: 0;

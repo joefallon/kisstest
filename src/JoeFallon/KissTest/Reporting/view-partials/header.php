@@ -21,6 +21,10 @@ if(!$summary->getTestCasesFailedCount())
         <a name="top"></a>
         <h4>Tests Result: <?php echo $sumarry_result_status; ?></h4>
         <h5>Number of Asserts: <?php echo $summary->getNumberOfAsserts(); ?></h5>
+        <p style="margin-top:3px;margin-bottom:0;">
+            <a href="cov/"
+               class="<?php echo $result_class; ?> cov-link">Coverage Report</a>
+        </p>
     </div>
     <div class="span3 text-center <?php echo $result_class; ?>">
         <h4>Tests Passed: <?php echo $summary->getTestCasesPassedCount(); ?><br />

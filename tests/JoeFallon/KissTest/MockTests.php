@@ -188,6 +188,5 @@ class MockTests extends UnitTest
         $count = $mock->getMethodCallCount('testMethod');
         $this->assertEqual($count, 2);
     }
-
 }
 

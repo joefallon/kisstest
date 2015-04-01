@@ -4,63 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ffd31282ac0b862aedb9efdd8a50e73f",
-    "packages": [],
-    "packages-dev": [
-        {
-            "name": "joefallon/phpautoloader",
-            "version": "v2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joefallon/phpautoloader.git",
-                "reference": "79284475b671923f91f1af9286204b3821b08298"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/79284475b671923f91f1af9286204b3821b08298",
-                "reference": "79284475b671923f91f1af9286204b3821b08298",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "JoeFallon": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joe Fallon",
-                    "email": "joseph.t.fallon@gmail.com",
-                    "homepage": "http://blog.joefallon.net/",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Joe's simple to use and versatile PHP autoloader.",
-            "homepage": "https://github.com/joefallon/phpautoloader",
-            "keywords": [
-                "Simple",
-                "autoloader",
-                "namespace",
-                "psr-0"
-            ],
-            "time": "2014-12-28 15:32:10"
-        },
+    "hash": "fafca8c7ac5047138b39503c8ad380b6",
+    "packages": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.14",
+            "version": "2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "ca158276c1200cc27f5409a5e338486bc0b4fc94"
+                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ca158276c1200cc27f5409a5e338486bc0b4fc94",
-                "reference": "ca158276c1200cc27f5409a5e338486bc0b4fc94",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34cc484af1ca149188d0d9e91412191e398e0b67",
+                "reference": "34cc484af1ca149188d0d9e91412191e398e0b67",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +30,7 @@
             },
             "require-dev": {
                 "ext-xdebug": ">=2.1.4",
-                "phpunit/phpunit": "~4.1"
+                "phpunit/phpunit": "~4"
             },
             "suggest": {
                 "ext-dom": "*",
@@ -92,9 +49,6 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
             "license": [
                 "BSD-3-Clause"
             ],
@@ -112,7 +66,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-12-26 13:28:33"
+            "time": "2015-01-24 10:06:35"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -336,6 +290,50 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2014-12-15 14:25:24"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "joefallon/phpautoloader",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joefallon/phpautoloader.git",
+                "reference": "3dd432e44d6d709b86a9ed60e3aa09375b1d49af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/3dd432e44d6d709b86a9ed60e3aa09375b1d49af",
+                "reference": "3dd432e44d6d709b86a9ed60e3aa09375b1d49af",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JoeFallon": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joe Fallon",
+                    "email": "joseph.t.fallon@gmail.com",
+                    "homepage": "http://blog.joefallon.net/",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Joe's simple to use and versatile PHP autoloader.",
+            "homepage": "https://github.com/joefallon/phpautoloader",
+            "keywords": [
+                "Simple",
+                "autoloader",
+                "namespace",
+                "psr-0"
+            ],
+            "time": "2015-02-05 19:08:04"
         }
     ],
     "aliases": [],

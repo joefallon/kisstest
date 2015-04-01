@@ -10,6 +10,8 @@ use JoeFallon\KissTest\UnitTest;
 require('config/main.php');
 
 UnitTest::setCodeCoverageOutputDirectory('../cov');
+UnitTest::addDirectoryToCoverageBlacklist('../tests');
+UnitTest::addDirectoryToCoverageBlacklist('../vendor');
 UnitTest::setCodeCoverageEnabled(true);
 
 new tests\JoeFallon\KissTest\AbstractFactoryTests();

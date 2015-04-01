@@ -15,6 +15,7 @@ use JoeFallon\KissTest\Reporting\Summary;
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
 use PHP_CodeCoverage;
+use PHP_CodeCoverage_Filter;
 use PHP_CodeCoverage_Report_HTML;
 
 /**
@@ -25,6 +26,7 @@ use PHP_CodeCoverage_Report_HTML;
 class UnitTest
 {
     private static $_codeCoverageDirectory;
+    private static $_blacklistDirs;
     /** @var string */
     private $_unitTestName;
     /** @var Summary */
@@ -50,13 +52,33 @@ class UnitTest
 
         if(self::$_codeCoverageEnabled && self::$_codeCoverage == null)
         {
-            self::$_codeCoverage = new PHP_CodeCoverage();
+            $filter = new PHP_CodeCoverage_Filter();
+
+            if(self::$_blacklistDirs != null)
+            {
+                foreach(self::$_blacklistDirs as $dir)
+                {
+                    $filter->addDirectoryToBlacklist($dir);
+                }
+            }
+
+            self::$_codeCoverage = new PHP_CodeCoverage(null, $filter);
         }
 
         // Determine the class name.
         $this->_unitTestName   = get_class($this);
         $this->_unitTestResult = new UnitTestResult();
         $this->performAllUnitTests();
+    }
+
+    public static function addDirectoryToCoverageBlacklist($dir)
+    {
+        if(self::$_blacklistDirs == null)
+        {
+            self::$_blacklistDirs[] = array();
+        }
+
+        self::$_blacklistDirs[] = $dir;
     }
 
     public static function setCodeCoverageEnabled($isEnabled)

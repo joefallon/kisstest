@@ -9,8 +9,8 @@ use JoeFallon\KissTest\UnitTest;
  */
 require('config/main.php');
 
-$coverage = new PHP_CodeCoverage;
-$coverage->start('All tests');
+UnitTest::setCodeCoverageOutputDirectory('../cov');
+UnitTest::setCodeCoverageEnabled(true);
 
 new tests\JoeFallon\KissTest\AbstractFactoryTests();
 new tests\JoeFallon\KissTest\MockTests();
@@ -19,10 +19,5 @@ new tests\JoeFallon\KissTest\Reporting\SummaryTests();
 new tests\JoeFallon\KissTest\Reporting\TestCaseResultTests();
 new tests\JoeFallon\KissTest\Reporting\UnitTestResultTests();
 
-
-$coverage->stop();
-
-$writer = new PHP_CodeCoverage_Report_HTML;
-$writer->process($coverage, '../cov');
 
 UnitTest::getAllUnitTestsSummary();

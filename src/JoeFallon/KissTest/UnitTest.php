@@ -8,11 +8,14 @@ require_once('Reporting/Summary.php');
 require_once('Reporting/TestCaseResult.php');
 require_once('Reporting/UnitTestResult.php');
 
+use Exception;
 use JoeFallon\KissTest\Reporting\MilliTimespan;
 use JoeFallon\KissTest\Reporting\Report;
 use JoeFallon\KissTest\Reporting\Summary;
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
+use PHP_CodeCoverage;
+use PHP_CodeCoverage_Report_HTML;
 
 /**
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
@@ -21,6 +24,7 @@ use JoeFallon\KissTest\Reporting\UnitTestResult;
  */
 class UnitTest
 {
+    private static $_codeCoverageDirectory;
     /** @var string */
     private $_unitTestName;
     /** @var Summary */
@@ -31,6 +35,10 @@ class UnitTest
     private $_currentTestCase;
     /** @var int */
     private $_assertCount;
+    /** @var bool */
+    private static $_codeCoverageEnabled;
+    /** @var PHP_CodeCoverage  */
+    private static $_codeCoverage;
 
 
     public function __construct()
@@ -40,12 +48,34 @@ class UnitTest
             self::$_summary = new Summary();
         }
 
+        if(self::$_codeCoverageEnabled && self::$_codeCoverage == null)
+        {
+            self::$_codeCoverage = new PHP_CodeCoverage();
+        }
+
         // Determine the class name.
         $this->_unitTestName   = get_class($this);
         $this->_unitTestResult = new UnitTestResult();
         $this->performAllUnitTests();
     }
 
+    public static function setCodeCoverageEnabled($isEnabled)
+    {
+        self::$_codeCoverageEnabled = $isEnabled;
+    }
+
+    public static function setCodeCoverageOutputDirectory($directory)
+    {
+        $writable = is_writable($directory);
+
+        if(!$writable)
+        {
+            $msg = 'The code coverage output directory is not writable.';
+            throw new Exception($msg);
+        }
+
+        self::$_codeCoverageDirectory = $directory;
+    }
 
     public static function startTimer()
     {
@@ -84,6 +114,14 @@ class UnitTest
 
         $report = new Report(self::$_summary);
         $report->generateReport();
+
+        if(self::$_codeCoverageEnabled)
+        {
+            $directory = self::$_codeCoverageDirectory;
+            $coverage = self::$_codeCoverage;
+            $writer = new PHP_CodeCoverage_Report_HTML();
+            $writer->process($coverage, $directory);
+        }
     }
 
 
@@ -508,6 +546,11 @@ class UnitTest
             $testName = str_replace('_', ' ', $method);
             $testCase->setTestCaseName($testName);
 
+            if(self::$_codeCoverageEnabled)
+            {
+                self::$_codeCoverage->start($method);
+            }
+
             $this->_assertCount = 0;
             $testCase->startTestCase();
             $this->setUp();
@@ -517,6 +560,11 @@ class UnitTest
             $testCase->setAssertCount($this->_assertCount);
 
             $this->_unitTestResult->addTestCaseResult($testCase);
+
+            if(self::$_codeCoverageEnabled)
+            {
+                self::$_codeCoverage->stop();
+            }
         }
 
         $unitTestResult = $this->_unitTestResult;

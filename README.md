@@ -480,7 +480,8 @@ The mocks can be used as stubs by simply not asserting on any of the methods in
 the instance of `Mock` held by the mock.stub class. Since no reflection, eval,
 or injection is used, the mock/stub classes are extremely fast.
 
-### Code Coverage
+Code Coverage
+-------------
 
 KissTest utilizes the php-code-coverage portion of the phpunit project to provide code
 coverage support. To enable the code coverage support, add the following code to the

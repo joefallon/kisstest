@@ -10,16 +10,16 @@
     "packages-dev": [
         {
             "name": "joefallon/phpautoloader",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/joefallon/phpautoloader.git",
-                "reference": "3dd432e44d6d709b86a9ed60e3aa09375b1d49af"
+                "reference": "940cc57d3219d210e0135355bf329d39a26f30fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/3dd432e44d6d709b86a9ed60e3aa09375b1d49af",
-                "reference": "3dd432e44d6d709b86a9ed60e3aa09375b1d49af",
+                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/940cc57d3219d210e0135355bf329d39a26f30fd",
+                "reference": "940cc57d3219d210e0135355bf329d39a26f30fd",
                 "shasum": ""
             },
             "type": "library",
@@ -48,7 +48,7 @@
                 "namespace",
                 "psr-0"
             ],
-            "time": "2015-02-05 19:08:04"
+            "time": "2015-12-27 17:23:01"
         }
     ],
     "aliases": [],

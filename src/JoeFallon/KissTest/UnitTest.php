@@ -1,5 +1,4 @@
 <?php
-
 namespace JoeFallon\KissTest;
 
 require_once('Reporting/MilliTimespan.php');
@@ -15,13 +14,9 @@ use JoeFallon\KissTest\Reporting\Summary;
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
 
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- * @license   MIT
- */
 class UnitTest
 {
+    /** @var string */
     private static $_codeCoverageDirectory;
     private static $_blacklistDirs;
     /** @var string */

@@ -151,7 +151,7 @@ is placed:
 Here is an example configuration file:
 
 ```php
-use JoeFallon\Autoloader;
+use JoeFallon\AutoLoader;
 use JoeFallon\Database\PdoFactory;
 
 // Define the include paths.
@@ -166,7 +166,7 @@ set_include_path(get_include_path().':'.SRC_PATH.':'.BASE_PATH);
 require(VEND_PATH.'/autoload.php');
 
 // All other (i.e. non-composer) autoloading.
-Autoloader::registerAutoLoad();
+AutoLoader::registerAutoLoad();
 
 // Clean out the database. It's pleasantly fast.
 define('DB_HOST', 'localhost');

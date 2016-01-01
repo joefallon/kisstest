@@ -88,13 +88,13 @@ ProjectDirectory
        |
        +--> Folder1
        |     |
-       |     +--> CodeFile1Tests.php   <-- unit tests for CodeFile1.php
+       |     +--> CodeFile1Tests.php           <-- unit tests for CodeFile1.php
        |
        +--> Folder2
        |     |
-       |     +--> CodeFile2Tests.php   <-- unit tests for CodeFile2.php
+       |     +--> CodeFile2Tests.php           <-- unit tests for CodeFile2.php
        |
-       +--> index.php                  <-- test suite definition
+       +--> index.php                          <-- test suite definition
 ```
 
 Here is the directory for KissTest:
@@ -479,3 +479,24 @@ class DependencyClassTests extends UnitTest
 The mocks can be used as stubs by simply not asserting on any of the methods in
 the instance of `Mock` held by the mock.stub class. Since no reflection, eval,
 or injection is used, the mock/stub classes are extremely fast.
+
+Code Coverage
+-------------
+
+KissTest utilizes the php-code-coverage portion of the phpunit project to provide code
+coverage support. To enable the code coverage support, add the following code to the
+configuration section of your test code:
+
+```php
+UnitTest::setCodeCoverageOutputDirectory('../cov');
+UnitTest::addDirectoryToCoverageBlacklist('../tests');
+UnitTest::addDirectoryToCoverageBlacklist('../vendor');
+UnitTest::setCodeCoverageEnabled(true);
+```
+
+It is important to realize that the "/cov" directory must be readable by the PHP process.
+To ensure this is the case, you can run the following at the CLI:
+
+```
+chown -R www-data:www-data /var/www
+```

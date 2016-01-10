@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "phpunit/php-code-coverage": "^2.0.0"
+        "phpunit/php-code-coverage": "^2.2.0"
     },
     "require-dev": {
         "joefallon/phpautoloader": "^2.0.0"

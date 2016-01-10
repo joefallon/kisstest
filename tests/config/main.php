@@ -17,4 +17,4 @@ AutoLoader::registerAutoLoad();
 UnitTest::setCodeCoverageOutputDirectory('../cov');
 UnitTest::addDirectoryToCoverageBlacklist('../tests');
 UnitTest::addDirectoryToCoverageBlacklist('../vendor');
-UnitTest::setCodeCoverageEnabled(true);
+UnitTest::setCodeCoverageEnabled(false);

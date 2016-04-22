@@ -13,8 +13,6 @@ require('config/main.php');
 use JoeFallon\KissTest\UnitTest;
 
 
-
-
 new MocksUsage();
 new ToStringTest();
 new DummyTest();

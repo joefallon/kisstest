@@ -3,15 +3,10 @@ namespace JoeFallon\KissTest;
 
 use Exception;
 
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- * @license   MIT
- */
 abstract class AbstractFactory
 {
-    /** @var  int */
-    protected static $_seq;
+    /** @var int */
+    protected static $_nextSequenceNumber;
 
 
     /**
@@ -19,14 +14,14 @@ abstract class AbstractFactory
      */
     public static function getNextSequenceNumber()
     {
-        if(self::$_seq == null)
+        if(self::$_nextSequenceNumber == null)
         {
-            self::$_seq = 0;
+            self::$_nextSequenceNumber = 0;
         }
 
-        self::$_seq++;
+        self::$_nextSequenceNumber++;
 
-        return self::$_seq;
+        return self::$_nextSequenceNumber;
     }
 
 

@@ -1,14 +1,9 @@
 <?php
 namespace JoeFallon\KissTest\Reporting;
 
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- * @license   MIT
- */
 class UnitTestResult
 {
-    /**  @var string */
+    /** @var string */
     private $_unitTestName;
     /** @var array */
     private $_testCaseResults;

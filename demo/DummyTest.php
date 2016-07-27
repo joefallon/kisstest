@@ -28,6 +28,6 @@ class DummyTest extends UnitTest
 
     public function test_demo_equal()
     {
-        $this->assertEqual(2, 'fred');
+        $this->assertEqual(2, 'fred', 'This is a test fail message.');
     }
 }

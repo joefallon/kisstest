@@ -71,7 +71,7 @@ class UnitTest
     {
         if(self::$_summary == null)
         {
-            die('No unit tests exist.');
+            die('No unit tests exist. Please create some unit tests.');
         }
 
         $report = new Report(self::$_summary);
@@ -85,12 +85,12 @@ class UnitTest
      *
      * @param mixed  $first
      * @param mixed  $second
-     * @param string $failMsg
-     * @param float  $maxDelta
+     * @param string $failMessage
+     * @param float  $maximumDelta
      *
      * @return bool
      */
-    protected function assertEqual($first, $second, $failMsg = "", $maxDelta = 0.0)
+    protected function assertEqual($first, $second, $failMessage = "", $maximumDelta = 0.0)
     {
         $this->_assertCount++;
 
@@ -105,7 +105,7 @@ class UnitTest
         {
             $delta = abs($second - $first);
 
-            if($delta <= $maxDelta)
+            if($delta <= $maximumDelta)
             {
                 $this->_currentTestCase->setMessage('');
                 $this->_currentTestCase->setTestPassed();
@@ -122,9 +122,7 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = ' . $this->convertValueToString($first)
-                   . ', $second = ' . $this->convertValueToString($second)
-                   . ', $failMsg = ' . $failMsg;
+        $message = $this->getFailureResultInfo($first, $second, $failMessage);
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -137,11 +135,11 @@ class UnitTest
      *
      * @param mixed  $first
      * @param mixed  $second
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertNotEqual($first, $second, $failMsg = "")
+    protected function assertNotEqual($first, $second, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -161,9 +159,7 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = ' . $this->convertValueToString($first)
-                   . ', $second = ' . $this->convertValueToString($second)
-                   . ', $failMsg = ' . $failMsg;
+        $message = $this->getFailureResultInfo($first, $second, $failMessage);
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -176,11 +172,11 @@ class UnitTest
      *
      * @param mixed  $first
      * @param mixed  $second
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertFirstGreaterThanSecond($first, $second, $failMsg = "")
+    protected function assertFirstGreaterThanSecond($first, $second, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -199,9 +195,7 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = ' . $this->convertValueToString($first)
-                   . ', $second = ' . $this->convertValueToString($second)
-                   . ', $failMsg = ' . $failMsg;
+        $message = $this->getFailureResultInfo($first, $second, $failMessage);
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -214,11 +208,11 @@ class UnitTest
      *
      * @param mixed  $first
      * @param mixed  $second
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertFirstGreaterThanOrEqualSecond($first, $second, $failMsg = "")
+    protected function assertFirstGreaterThanOrEqualSecond($first, $second, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -237,9 +231,7 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = ' . $this->convertValueToString($first)
-                   . ', $second = ' . $this->convertValueToString($second)
-                   . ', $failMsg = ' . $failMsg;
+        $message = $this->getFailureResultInfo($first, $second, $failMessage);
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -252,11 +244,11 @@ class UnitTest
      *
      * @param mixed  $first
      * @param mixed  $second
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertFirstLessThanSecond($first, $second, $failMsg = "")
+    protected function assertFirstLessThanSecond($first, $second, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -275,9 +267,7 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = ' . $this->convertValueToString($first)
-                   . ', $second = ' . $this->convertValueToString($second)
-                   . ', $failMsg = ' . $failMsg;
+        $message = $this->getFailureResultInfo($first, $second, $failMessage);
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -290,11 +280,11 @@ class UnitTest
      *
      * @param mixed  $first
      * @param mixed  $second
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertFirstLessThanOrEqualSecond($first, $second, $failMsg = "")
+    protected function assertFirstLessThanOrEqualSecond($first, $second, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -313,9 +303,7 @@ class UnitTest
             return true;
         }
 
-        $message = '$first = ' . $this->convertValueToString($first)
-                   . ', $second = ' . $this->convertValueToString($second)
-                   . ', $failMsg = ' . $failMsg;
+        $message = $this->getFailureResultInfo($first, $second, $failMessage);
         $this->_currentTestCase->setMessage($message);
         $this->_currentTestCase->setTestFailed();
 
@@ -328,11 +316,11 @@ class UnitTest
      * true.
      *
      * @param mixed  $value
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertTrue($value, $failMsg = "")
+    protected function assertTrue($value, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -346,7 +334,7 @@ class UnitTest
         if($value == false)
         {
             $message = 'The provided value is false.'
-                       . ', $failMsg = ' . $failMsg;
+                       . ', $failMessage = ' . $failMessage;
             $this->_currentTestCase->setMessage($message);
             $this->_currentTestCase->setTestFailed();
 
@@ -365,11 +353,11 @@ class UnitTest
      * false.
      *
      * @param mixed  $value
-     * @param string $failMsg
+     * @param string $failMessage
      *
      * @return bool
      */
-    protected function assertFalse($value, $failMsg = "")
+    protected function assertFalse($value, $failMessage = "")
     {
         $this->_assertCount++;
 
@@ -384,7 +372,7 @@ class UnitTest
         {
             $message = 'The provided value is true ($value = '
                        . $this->convertValueToString($value)
-                       . ', $failMsg = ' . $failMsg . ').';
+                       . ', $failMessage = ' . $failMessage . ').';
             $this->_currentTestCase->setMessage($message);
             $this->_currentTestCase->setTestFailed();
 
@@ -464,6 +452,25 @@ class UnitTest
         return true;
     }
 
+    /**
+     * @param mixed  $first
+     * @param mixed  $second
+     * @param string $failMessage
+     *
+     * @return string
+     */
+    protected function getFailureResultInfo($first, $second, $failMessage)
+    {
+        $first  = $this->convertValueToString($first);
+        $second = $this->convertValueToString($second);
+
+        $message = '$first = ' . $first
+                   . ', $second = ' . $second
+                   . ', $failMessage = ' . $failMessage;
+
+        return $message;
+    }
+
 
     /**
      * @param $val
@@ -493,8 +500,8 @@ class UnitTest
 
         foreach($testMethods as $method)
         {
-            $milliTimespan          = new MilliTimespan();
-            $testCase               = new TestCaseResult($milliTimespan);
+            $milliTimespan = new MilliTimespan();
+            $testCase      = new TestCaseResult($milliTimespan);
             $this->_currentTestCase = $testCase;
 
             $testName = str_replace('_', ' ', $method);

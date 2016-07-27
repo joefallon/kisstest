@@ -2,11 +2,7 @@
     "name": "joefallon/kisstest",
     "type": "library",
     "description": "KissTest is command-line free, fast, simple and beautiful unit test framework.",
-    "keywords": [
-        "unit-test",
-        "xunit",
-        "test"
-    ],
+    "keywords": [ "unit-test", "xunit", "test" ],
     "homepage": "https://github.com/joefallon/kisstest",
     "license": "MIT",
     "authors": [
@@ -21,7 +17,6 @@
     },
     "require-dev": {
         "joefallon/phpautoloader": "^2.0.0"
-
     },
     "autoload": {
         "psr-0": {

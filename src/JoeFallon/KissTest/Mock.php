@@ -3,11 +3,6 @@ namespace JoeFallon\KissTest;
 
 use Exception;
 
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- * @license   MIT
- */
 class Mock
 {
     /** @var array */
@@ -31,7 +26,7 @@ class Mock
      * body of the method under test
      *
      * @param string $methodName
-     * @param null   $args
+     * @param array|null   $args
      *
      * @return null
      */

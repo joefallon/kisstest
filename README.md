@@ -151,22 +151,7 @@ is placed:
 Here is an example configuration file:
 
 ```php
-use JoeFallon\AutoLoader;
 use JoeFallon\Database\PdoFactory;
-
-// Define the include paths.
-define('BASE_PATH', realpath(dirname(__FILE__).'/../../'));
-define('SRC_PATH',  BASE_PATH.'/src');
-define('VEND_PATH', BASE_PATH.'/vendor');
-
-// Set the application include paths for autoloading.
-set_include_path(get_include_path().':'.SRC_PATH.':'.BASE_PATH);
-
-// Composer autoloading.
-require(VEND_PATH.'/autoload.php');
-
-// All other (i.e. non-composer) autoloading.
-AutoLoader::registerAutoLoad();
 
 // Clean out the database. It's pleasantly fast.
 define('DB_HOST', 'localhost');

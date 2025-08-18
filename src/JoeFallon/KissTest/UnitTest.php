@@ -1,11 +1,7 @@
 <?php
-namespace JoeFallon\KissTest;
+declare(strict_types=1);
 
-require_once('Reporting/MilliTimespan.php');
-require_once('Reporting/Report.php');
-require_once('Reporting/Summary.php');
-require_once('Reporting/TestCaseResult.php');
-require_once('Reporting/UnitTestResult.php');
+namespace JoeFallon\KissTest;
 
 use JoeFallon\KissTest\Reporting\MilliTimespan;
 use JoeFallon\KissTest\Reporting\Report;
@@ -13,63 +9,44 @@ use JoeFallon\KissTest\Reporting\Summary;
 use JoeFallon\KissTest\Reporting\TestCaseResult;
 use JoeFallon\KissTest\Reporting\UnitTestResult;
 
+/**
+ * Base class for unit tests in the KissTest framework.
+ * Provides assertion methods and manages test execution lifecycle.
+ */
 class UnitTest
 {
-    /** @var string */
-    private $_unitTestName;
-    /** @var Summary */
-    private static $_summary;
-    /** @var UnitTestResult */
-    private $_unitTestResult;
-    /** @var TestCaseResult */
-    private $_currentTestCase;
-    /** @var int */
-    private $_assertCount;
+    private string $_unitTestName;
+    private static ?Summary $_summary = null;
+    private UnitTestResult $_unitTestResult;
+    private TestCaseResult $_currentTestCase;
+    private int $_assertCount = 0;
 
     public function __construct()
     {
-        if(self::$_summary == null)
+        if(self::$_summary === null)
         {
             self::$_summary = new Summary();
         }
 
-        // Determine the class name.
         $this->_unitTestName   = get_class($this);
         $this->_unitTestResult = new UnitTestResult();
         $this->performAllUnitTests();
     }
 
-    public static function startTimer()
+    public static function startTimer(): void
     {
-        if(self::$_summary == null)
+        if(self::$_summary === null)
         {
             self::$_summary = new Summary();
         }
     }
 
+    protected function setUp(): void { }
+    protected function tearDown(): void { }
 
-    /**
-     * The setUp method is executed before each test method is called and is
-     * useful to locate code that should be run before each test.
-     */
-    protected function setUp() { }
-
-
-    /**
-     * The tearDown method is executed after each test method is called and is
-     * useful to locate code that should be run after each test.
-     */
-    protected function tearDown() { }
-
-
-    /**
-     * This method returns a report of the result of running the unit tests.
-     *
-     * @return string
-     */
-    public static function getAllUnitTestsSummary()
+    public static function getAllUnitTestsSummary(): void
     {
-        if(self::$_summary == null)
+        if(self::$_summary === null)
         {
             die('No unit tests exist. Please create some unit tests.');
         }
@@ -78,25 +55,21 @@ class UnitTest
         $report->generateReport();
     }
 
-
     /**
-     * This method asserts that $first is the same as $second using triple
-     * equals (===) equality comparison.
-     *
-     * @param mixed  $first
-     * @param mixed  $second
+     * Asserts that two values are equal, with optional delta for floats.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     * @param float  $maximumDelta
-     *
+     * @param float $maximumDelta
      * @return bool
      */
-    protected function assertEqual($first, $second, $failMessage = "", $maximumDelta = 0.0)
+    protected function assertEqual($first, $second, string $failMessage = "", float $maximumDelta = 0.0): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -129,27 +102,23 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * Assert Not Equal
-     *
-     * @param mixed  $first
-     * @param mixed  $second
+     * Asserts that two values are not equal.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertNotEqual($first, $second, $failMessage = "")
+    protected function assertNotEqual($first, $second, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
-
 
         if($first != $second)
         {
@@ -166,23 +135,20 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * Assert First Greater Than Second
-     *
-     * @param mixed  $first
-     * @param mixed  $second
+     * Asserts that the first value is greater than the second.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertFirstGreaterThanSecond($first, $second, $failMessage = "")
+    protected function assertFirstGreaterThanSecond($first, $second, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -202,23 +168,20 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * Assert First Greater Than Or Equal Second
-     *
-     * @param mixed  $first
-     * @param mixed  $second
+     * Asserts that the first value is greater than or equal to the second.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertFirstGreaterThanOrEqualSecond($first, $second, $failMessage = "")
+    protected function assertFirstGreaterThanOrEqualSecond($first, $second, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -238,23 +201,20 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * Assert First Less Than Second
-     *
-     * @param mixed  $first
-     * @param mixed  $second
+     * Asserts that the first value is less than the second.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertFirstLessThanSecond($first, $second, $failMessage = "")
+    protected function assertFirstLessThanSecond($first, $second, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -274,23 +234,20 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * Assert First Less Than Or Equal Second
-     *
-     * @param mixed  $first
-     * @param mixed  $second
+     * Asserts that the first value is less than or equal to the second.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertFirstLessThanOrEqualSecond($first, $second, $failMessage = "")
+    protected function assertFirstLessThanOrEqualSecond($first, $second, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -310,28 +267,24 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * Assert False - This assert will fail if the $value provided is not
-     * true.
-     *
-     * @param mixed  $value
+     * Asserts that the value is true.
+     * @param mixed $value
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertTrue($value, $failMessage = "")
+    protected function assertTrue($value, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
 
-        if($value == false)
+        if(!$value)
         {
             $message = 'The provided value is false.'
                        . ', $failMessage = ' . $failMessage;
@@ -347,28 +300,24 @@ class UnitTest
         return true;
     }
 
-
     /**
-     * Assert False - This assert will fail if the $value provided is not
-     * false.
-     *
-     * @param mixed  $value
+     * Asserts that the value is false.
+     * @param mixed $value
      * @param string $failMessage
-     *
      * @return bool
      */
-    protected function assertFalse($value, $failMessage = "")
+    protected function assertFalse($value, string $failMessage = ""): bool
     {
         $this->_assertCount++;
 
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
 
-        if($value == true)
+        if($value)
         {
             $message = 'The provided value is true ($value = '
                        . $this->convertValueToString($value)
@@ -385,17 +334,15 @@ class UnitTest
         return true;
     }
 
-
     /**
-     * This method will always cause a test case to fail.
-     *
+     * Marks a test as not implemented and fails it.
      * @return bool
      */
-    protected function notImplementedFail()
+    protected function notImplementedFail(): bool
     {
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -407,19 +354,16 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * This method will always cause a test case to fail.
-     *
+     * Marks a test as failed with a message.
      * @param string $message
-     *
      * @return bool
      */
-    protected function testFail($message = '')
+    protected function testFail(string $message = ''): bool
     {
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -431,17 +375,15 @@ class UnitTest
         return false;
     }
 
-
     /**
-     * This method will always cause a test case to pass.
-     *
+     * Marks a test as passed.
      * @return bool
      */
-    protected function testPass()
+    protected function testPass(): bool
     {
         $currTestStatus = $this->_currentTestCase->getTestStatus();
 
-        if($currTestStatus == false)
+        if($currTestStatus === false)
         {
             return false;
         }
@@ -453,13 +395,13 @@ class UnitTest
     }
 
     /**
-     * @param mixed  $first
-     * @param mixed  $second
+     * Returns a formatted failure message for assertions.
+     * @param mixed $first
+     * @param mixed $second
      * @param string $failMessage
-     *
      * @return string
      */
-    protected function getFailureResultInfo($first, $second, $failMessage)
+    protected function getFailureResultInfo($first, $second, string $failMessage): string
     {
         $first  = $this->convertValueToString($first);
         $second = $this->convertValueToString($second);
@@ -471,20 +413,19 @@ class UnitTest
         return $message;
     }
 
-
     /**
-     * @param $val
-     *
+     * Converts a value to a string for reporting.
+     * @param mixed $val
      * @return string
      */
-    private function convertValueToString($val)
+    private function convertValueToString($val): string
     {
-        if(is_array($val) == true)
+        if(is_array($val))
         {
             return 'Array';
         }
 
-        if(is_object($val) == true)
+        if(is_object($val))
         {
             return get_class($val);
         }
@@ -492,8 +433,11 @@ class UnitTest
         return gettype($val) . ":" . strval($val);
     }
 
-
-    private function performAllUnitTests()
+    /**
+     * Runs all test methods in the class.
+     * @return void
+     */
+    private function performAllUnitTests(): void
     {
         $this->_unitTestResult->setUnitTestName($this->_unitTestName);
         $testMethods = $this->getTestMethods();
@@ -520,19 +464,19 @@ class UnitTest
         self::$_summary->addUnitTestResult($unitTestResult);
     }
 
-
     /**
+     * Returns all test methods in the class.
      * @return array
      */
-    private function getTestMethods()
+    private function getTestMethods(): array
     {
         $classMethods = get_class_methods($this);
         $testPrefix   = 'test_';
-        $testMethods  = array();
+        $testMethods  = [];
 
         foreach($classMethods as $method)
         {
-            if(stripos($method, $testPrefix, 0) === 0)
+            if(stripos($method, $testPrefix) === 0)
             {
                 $testMethods[] = $method;
             }
@@ -541,4 +485,3 @@ class UnitTest
         return $testMethods;
     }
 }
-

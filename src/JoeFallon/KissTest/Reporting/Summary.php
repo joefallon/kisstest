@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace JoeFallon\KissTest\Reporting;
 
 /**
@@ -8,146 +10,90 @@ namespace JoeFallon\KissTest\Reporting;
  */
 class Summary
 {
-    /** @var array */
-    private $_unitTestResults;
+    /** @var UnitTestResult[] */
+    private array $_unitTestResults;
     /** @var MilliTimespan */
-    private static $_timer;
-
+    private static MilliTimespan $_timer;
 
     public function __construct()
     {
-        $this->_unitTestResults = array();
+        $this->_unitTestResults = [];
         self::$_timer = new MilliTimespan();
         self::$_timer->startTimer();
     }
 
-
-    /**
-     * @return int
-     */
-    public function getUnitTestCount()
+    public function getUnitTestCount(): int
     {
         return count($this->_unitTestResults);
     }
 
-
-    /**
-     * @param UnitTestResult
-     */
-    public function addUnitTestResult(UnitTestResult $unitTestResult)
+    public function addUnitTestResult(UnitTestResult $unitTestResult): void
     {
         $this->_unitTestResults[] = $unitTestResult;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getNumberOfAsserts()
+    public function getNumberOfAsserts(): string
     {
         $total = 0;
-
-        foreach($this->_unitTestResults as $result)
-        {
+        foreach ($this->_unitTestResults as $result) {
             /* @var $result UnitTestResult */
             $total += $result->getAssertCount();
         }
-
         return number_format($total);
     }
 
-
-    /**
-     * @return integer
-     */
-    public function getTestCasesCount()
+    public function getTestCasesCount(): int
     {
         $total = 0;
-
-        foreach($this->_unitTestResults as $result)
-        {
-            /* @var $result UnitTestResult */
+        foreach ($this->_unitTestResults as $result) {
             $total += $result->getTestCaseCount();
         }
-
         return $total;
     }
 
-
-    /**
-     * @return integer
-     */
-    public function getTestCasesPassedCount()
+    public function getTestCasesPassedCount(): int
     {
         $totalPassed = 0;
-
-        foreach($this->_unitTestResults as $result)
-        {
-            /* @var $result UnitTestResult */
+        foreach ($this->_unitTestResults as $result) {
             $totalPassed += $result->getNumberTestCasesPass();
         }
-
         return $totalPassed;
     }
 
-
-    /**
-     * @return integer
-     */
-    public function getTestCasesFailedCount()
+    public function getTestCasesFailedCount(): int
     {
         $total  = $this->getTestCasesCount();
         $passed = $this->getTestCasesPassedCount();
-
         return $total - $passed;
     }
 
-
-    /**
-     * @return float
-     */
-    public function getExecutionTimeInMillisecs()
+    public function getExecutionTimeInMillisecs(): float
     {
         self::$_timer->stopTimer();
         $totalTime = self::$_timer->getElapsedTimeInMilliSec();
-        
         return $totalTime;
     }
 
-
-    /**
-     * @return float
-     */
-    public function getPercentagePassed()
+    public function getPercentagePassed(): float
     {
         $total = $this->getTestCasesCount();
-        $total = floatval($total);
-        
-        if($total == 0)
-        {
+        if ($total === 0) {
             return 100.0;
         }
-
-        $passed        = $this->getTestCasesPassedCount();
-        $passed        = floatval($passed);
-        $percentPassed = ( $passed/$total ) * 100.0;
-
+        $passed = $this->getTestCasesPassedCount();
+        $percentPassed = ($passed / $total) * 100.0;
         return $percentPassed;
     }
 
-    /**
-     * @return float
-     */
-    public function getPercentageFailed()
+    public function getPercentageFailed(): float
     {
         return 100.0 - $this->getPercentagePassed();
     }
 
-
     /**
-     * @return array
+     * @return UnitTestResult[]
      */
-    public function getUnitTestsResults()
+    public function getUnitTestsResults(): array
     {
         return $this->_unitTestResults;
     }

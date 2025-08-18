@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\TestCaseResult;
@@ -22,8 +24,7 @@ class UnitTestResultTests extends UnitTest
         $expected = 1;
         $actual   = $unitTestResult->getTestCaseCount();
 
-        return $this->assertEqual($expected, $actual);
-
+        $this->assertEqual($expected, $actual);
     }
 
 
@@ -47,13 +48,13 @@ class UnitTestResultTests extends UnitTest
         $expected = 4.0;
         $actual   = $unitTestResult->getExecutionTimeInMillisecs();
 
-        return $this->assertEqual($expected, $actual, "", 0.001);
-
+        $this->assertEqual($expected, $actual, "", 0.001);
     }
 
 
     public function test_correct_test_passes_calculated()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult     = new UnitTestResult();
         $milliTimespanMock1 = new MilliTimespanMock();
         $testCaseResult1    = new TestCaseResult($milliTimespanMock1);
@@ -82,13 +83,13 @@ class UnitTestResultTests extends UnitTest
         $expected = 2;
         $actual   = $unitTestResult->getNumberTestCasesPass();
 
-        return $this->assertEqual($expected, $actual);
-
+        $this->assertEqual($expected, $actual);
     }
 
 
     public function test_correct_test_fails_calculated()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult = new UnitTestResult();
 
         $milliTimespanMock1 = new MilliTimespanMock();
@@ -118,12 +119,13 @@ class UnitTestResultTests extends UnitTest
         $expected = 1;
         $actual   = $unitTestResult->getNumberTestCasesFailed();
 
-        return $this->assertEqual($expected, $actual);
+        $this->assertEqual($expected, $actual);
     }
 
 
     public function test_correct_test_passed_percentage_calculated()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult = new UnitTestResult();
 
         $milliTimespanMock1 = new MilliTimespanMock();
@@ -153,12 +155,13 @@ class UnitTestResultTests extends UnitTest
         $expected = 66.6666;
         $actual   = $unitTestResult->getPercentagePassed();
 
-        return $this->assertEqual($expected, $actual, "", 0.01);
+        $this->assertEqual($expected, $actual, "", 0.01);
     }
 
 
     public function test_correct_test_failed_percentage_calculated()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult = new UnitTestResult();
 
         $milliTimespanMock1 = new MilliTimespanMock();
@@ -188,6 +191,6 @@ class UnitTestResultTests extends UnitTest
         $expected = 33.33333;
         $actual   = $unitTestResult->getPercentageFailed();
 
-        return $this->assertEqual($expected, $actual, "", 0.01);
+        $this->assertEqual($expected, $actual, "", 0.01);
     }
 }

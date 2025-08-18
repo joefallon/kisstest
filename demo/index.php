@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  *
@@ -6,18 +7,17 @@
  *
  * @license   MIT
  */
-
+require_once __DIR__ . '/../vendor/autoload.php';
 
 require('config/main.php');
 
 use JoeFallon\KissTest\UnitTest;
 
 
-new MocksUsage();
-new ToStringTest();
-new DummyTest();
-new AnotherDummyTest();
+new demo\MocksUsage();
+new demo\ToStringTest();
+new demo\DummyTest();
+new demo\AnotherDummyTest();
 
 
 UnitTest::getAllUnitTestsSummary();
-

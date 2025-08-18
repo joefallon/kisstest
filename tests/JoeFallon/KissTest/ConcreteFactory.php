@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest;
 
+use Exception;
 use JoeFallon\KissTest\AbstractFactory;
 
 /**
@@ -15,7 +18,7 @@ class ConcreteFactory extends AbstractFactory
      * This function instantiates the desired class fills it with data
      * and returns it. It does not persist the instance.
      *
-     * @return mixed
+     * @throws Exception
      */
     public static function create()
     {
@@ -27,7 +30,7 @@ class ConcreteFactory extends AbstractFactory
      * persists it to the database and returns it. Additionally, it should
      * build dependent classes that any foreign keys point to.
      *
-     * @return mixed
+     * @throws Exception
      */
     public static function build()
     {

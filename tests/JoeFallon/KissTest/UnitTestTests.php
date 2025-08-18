@@ -1,8 +1,18 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest;
 
 use JoeFallon\KissTest\UnitTest;
 
+/**
+ * Unit tests for the JoeFallon\KissTest\UnitTest class.
+ *
+ * These tests verify core assertion methods and ensure correct behavior
+ * for equality, comparison, and boolean assertions.
+ *
+ * Follows AAA (Arrange, Act, Assert) pattern and FIRST principles.
+ */
 class UnitTestTests extends UnitTest
 {
     public function test_assertEqual()

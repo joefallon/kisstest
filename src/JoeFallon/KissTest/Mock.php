@@ -1,41 +1,37 @@
 <?php
+declare(strict_types=1);
+
 namespace JoeFallon\KissTest;
 
 use Exception;
 
+/**
+ * Mock class for tracking method calls and return values in tests.
+ *
+ * @package JoeFallon\KissTest
+ */
 class Mock
 {
-    /** @var array */
-    private $_methodCalls;
-    /** @var array */
-    private $_methodReturnValues;
-
-
-    public function __construct()
-    {
-        $this->_methodCalls        = array();
-        $this->_methodReturnValues = array();
-    }
-
+    private array $_methodCalls = [];
+    private array $_methodReturnValues = [];
 
     /**
-     * This method should be called whenever a method in the
-     * class under test is called. It returns the previously
-     * specified return value for the specified method. Lastly,
-     * a call to this method should completely replace of the
-     * body of the method under test
+     * Should be called whenever a method in the class under test is called.
+     * Returns the previously specified return value for the specified method.
+     * A call to this method should completely replace the body of the method under test.
      *
-     * @param string $methodName
-     * @param array|null   $args
+     * @param string     $methodName
+     * @param array|null $args
      *
-     * @return null
+     * @return mixed
+     * @throws Exception
      */
-    public function methodCalled($methodName, $args = null)
+    public function methodCalled(string $methodName, ?array $args = null)
     {
-        $this->_methodCalls[] = array(
+        $this->_methodCalls[] = [
             'name' => $methodName,
             'args' => $args
-        );
+        ];
 
         $callCount = $this->getMethodCallCount($methodName);
         $returnVal = $this->getMethodReturnValue($methodName, $callCount);
@@ -43,32 +39,25 @@ class Mock
         return $returnVal;
     }
 
-
     /**
-     * This method returns the number of times the specified method has
-     * been called.
+     * Returns the number of times the specified method has been called.
      *
      * @param string $methodName
-     *
      * @return int
      * @throws Exception
      */
-    public function getMethodCallCount($methodName)
+    public function getMethodCallCount(string $methodName): int
     {
-        $methodName = strval($methodName);
-
-        if(strlen($methodName) == 0)
+        if(strlen($methodName) === 0)
         {
-            $msg = 'Method name cannot be empty.';
-            throw new Exception($msg);
+            throw new Exception('Method name cannot be empty.');
         }
 
         $count = 0;
-        $calls = $this->_methodCalls;
 
-        foreach($calls as $value)
+        foreach($this->_methodCalls as $value)
         {
-            if($value['name'] == $methodName)
+            if($value['name'] === $methodName)
             {
                 $count++;
             }
@@ -77,48 +66,36 @@ class Mock
         return $count;
     }
 
-
     /**
-     * This method returns the arguments supplied to a method for
-     * the specified call count of the method. For example, to retrieve
-     * the arguments supplied to a method on the third time it was
-     * called, use a $callCount of 3. The supplied arguments are
-     * returned in the form of an array.
+     * Returns the arguments supplied to a method for the specified call count of the method.
      *
      * @param string $methodName
-     * @param int    $callCount
-     *
+     * @param int $callCount
      * @return mixed
      * @throws Exception
      */
-    public function getMethodArgs($methodName, $callCount = 1)
+    public function getMethodArgs(string $methodName, int $callCount = 1)
     {
-        $methodName = strval($methodName);
-        $callCount  = intval($callCount);
-
-        if(strlen($methodName) == 0)
+        if(strlen($methodName) === 0)
         {
-            $msg = 'Method name cannot be empty.';
-            throw new Exception($msg);
+            throw new Exception('Method name cannot be empty.');
         }
 
         if($callCount < 1)
         {
-            $msg = 'Call count must be greater than or equal to one (1).';
-            throw new Exception($msg);
+            throw new Exception('Call count must be greater than or equal to one (1).');
         }
 
         $count = 0;
-        $calls = $this->_methodCalls;
 
-        foreach($calls as $call)
+        foreach($this->_methodCalls as $call)
         {
-            if($call['name'] == $methodName)
+            if($call['name'] === $methodName)
             {
                 $count++;
             }
 
-            if($count == $callCount)
+            if($count === $callCount)
             {
                 return $call['args'];
             }
@@ -133,83 +110,65 @@ class Mock
         throw new Exception($msg);
     }
 
-
     /**
-     * @param string $methodName
-     * @param null   $returnVal
-     * @param null   $callCount
+     * Sets the return value for a method, optionally for a specific call count.
      *
+     * @param string $methodName
+     * @param mixed $returnVal
+     * @param int|null $callCount
      * @throws Exception
      */
-    public function setMethodReturnValue($methodName,
-                                         $returnVal = null,
-                                         $callCount = null)
+    public function setMethodReturnValue(string $methodName, $returnVal = null, ?int $callCount = null): void
     {
-        $methodName = strval($methodName);
-        $callCount  = intval($callCount);
-
-        if(strlen($methodName) == 0)
+        if(strlen($methodName) === 0)
         {
-            $msg = 'Method name cannot be empty.';
-            throw new Exception($msg);
+            throw new Exception('Method name cannot be empty.');
         }
 
-        $r     = &$this->_methodReturnValues;
-        $count = count($r);
-
-        for($i = 0; $i < $count; $i++)
+        foreach($this->_methodReturnValues as &$value)
         {
-            if($r[$i]['name'] == $methodName && $r[$i]['callCount'] == $callCount)
+            if($value['name'] === $methodName && $value['callCount'] === $callCount)
             {
-                $r[$i]['return'] = $returnVal;
-
+                $value['return'] = $returnVal;
                 return;
             }
         }
 
-
-        $r[] = array(
+        $this->_methodReturnValues[] = [
             'name'      => $methodName,
             'return'    => $returnVal,
             'callCount' => $callCount
-        );
+        ];
     }
 
-
     /**
-     * @param string $methodName
-     * @param null   $callCount
+     * Gets the return value for a method, optionally for a specific call count.
      *
-     * @return null
+     * @param string $methodName
+     * @param int|null $callCount
+     * @return mixed|null
      * @throws Exception
      */
-    private function getMethodReturnValue($methodName, $callCount = null)
+    private function getMethodReturnValue(string $methodName, ?int $callCount = null)
     {
-        $methodName = strval($methodName);
-        $callCount  = intval($callCount);
-
-        if(strlen($methodName) == 0)
+        if(strlen($methodName) === 0)
         {
-            $msg = 'Method name cannot be empty.';
-            throw new Exception($msg);
+            throw new Exception('Method name cannot be empty.');
         }
 
-        $calls = $this->_methodReturnValues;
-
         // Return the return value specified by the name and callCount if possible.
-        foreach($calls as $value)
+        foreach($this->_methodReturnValues as $value)
         {
-            if($value['name'] == $methodName && $value['callCount'] == $callCount)
+            if($value['name'] === $methodName && $value['callCount'] === $callCount)
             {
                 return $value['return'];
             }
         }
 
-        // Since the return value specified by the name and callCount was not
-        // found, return the all call count return value, if exists.
-        foreach($calls as $value)
+        // Return the all call count return value, if exists.
+        foreach($this->_methodReturnValues as $value)
         {
-            if($value['name'] == $methodName && $value['callCount'] == null)
+            if($value['name'] === $methodName && $value['callCount'] === null)
             {
                 return $value['return'];
             }

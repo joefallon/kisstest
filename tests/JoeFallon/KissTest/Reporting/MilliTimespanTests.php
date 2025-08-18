@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\MilliTimespan;
@@ -14,11 +16,11 @@ class MilliTimespanTests extends UnitTest
     public function test_elapsed_time_is_always_zero_if_not_started()
     {
         $timespan = new MilliTimespan();
-        $expected = 0;
+        $expected = 0.0;
         usleep(100);
         $actual   = $timespan->getElapsedTimeInMilliSec();
 
-        return $this->assertEqual($expected, $actual, "", 0.01);
+        $this->assertEqual($expected, $actual, "", 0.01);
     }
 
     
@@ -26,23 +28,23 @@ class MilliTimespanTests extends UnitTest
     {
         $timespan = new MilliTimespan();
         $timespan->startTimer();
-        usleep(100);
+        usleep(1000);
         $timespan->stopTimer();
         $elapsedTime = $timespan->getElapsedTimeInMilliSec();
 
-        return $this->assertFirstGreaterThanSecond($elapsedTime, 0.0);
+        $this->assertFirstGreaterThanSecond($elapsedTime, 0.0);
     }
 
 
     public function test_elapsed_time_is_zero_if_stopped_with_no_start()
     {
         $timespan = new MilliTimespan();
-        usleep(100);
+        usleep(1000);
         $timespan->stopTimer();
-        $expected = 0;
+        $expected = 0.0;
         $actual = $timespan->getElapsedTimeInMilliSec();
 
-        return $this->assertEqual($expected, $actual);
+        $this->assertEqual($expected, $actual);
     }
 
 
@@ -53,7 +55,7 @@ class MilliTimespanTests extends UnitTest
         usleep(100);
         $elapsedTime = $timespan->getElapsedTimeInMilliSec();
 
-        return $this->assertFirstGreaterThanSecond($elapsedTime, 0);
+        $this->assertFirstGreaterThanSecond($elapsedTime, 0);
     }
 
 }

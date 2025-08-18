@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\Summary;
@@ -15,6 +17,7 @@ class SummaryTests extends UnitTest
 {
     public function test_adding_unittest_result_returns_correct_count()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult     = new UnitTestResult();
         $milliTimespanMock1 = new MilliTimespanMock();
         $testCaseResult1    = new TestCaseResult($milliTimespanMock1);
@@ -46,12 +49,13 @@ class SummaryTests extends UnitTest
         $expected = 1;
         $actual   = $summary->getUnitTestCount();
 
-        return $this->assertEqual($expected, $actual);
+        $this->assertEqual($expected, $actual);
     }
 
 
     public function test_correct_tests_passed_count_returned()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult     = new UnitTestResult();
         $milliTimespanMock1 = new MilliTimespanMock();
         $testCaseResult1    = new TestCaseResult($milliTimespanMock1);
@@ -83,12 +87,13 @@ class SummaryTests extends UnitTest
         $expected = 2;
         $actual   = $summary->getTestCasesPassedCount();
 
-        return $this->assertEqual($expected, $actual);
+        $this->assertEqual($expected, $actual);
     }
 
 
     public function test_correct_tests_failed_count_returned()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult     = new UnitTestResult();
         $milliTimespanMock1 = new MilliTimespanMock();
         $testCaseResult1    = new TestCaseResult($milliTimespanMock1);
@@ -120,12 +125,13 @@ class SummaryTests extends UnitTest
         $expected = 1;
         $actual   = $summary->getTestCasesFailedCount();
 
-        return $this->assertEqual($expected, $actual);
+        $this->assertEqual($expected, $actual);
     }
 
 
     public function test_test_cases_count_is_correct()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult     = new UnitTestResult();
         $milliTimespanMock1 = new MilliTimespanMock();
         $testCaseResult1    = new TestCaseResult($milliTimespanMock1);
@@ -157,7 +163,7 @@ class SummaryTests extends UnitTest
         $expected = 3;
         $actual   = $summary->getTestCasesCount();
 
-        return $this->assertEqual($expected, $actual);
+        $this->assertEqual($expected, $actual);
     }
 
 
@@ -197,12 +203,13 @@ class SummaryTests extends UnitTest
 
         $time = $summary->getExecutionTimeInMillisecs();
 
-        return $this->assertFirstGreaterThanSecond($time, 0);
+        $this->assertFirstGreaterThanSecond($time, 0);
     }
 
 
     public function test_correct_percentage_passed()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult = new UnitTestResult();
 
         $milliTimespanMock1 = new MilliTimespanMock();
@@ -235,12 +242,13 @@ class SummaryTests extends UnitTest
         $expected = 66.66666;
         $actual   = $summary->getPercentagePassed();
 
-        return $this->assertEqual($expected, $actual, "", 0.01);
+        $this->assertEqual($expected, $actual, "", 0.01);
     }
 
 
     public function test_correct_percentage_failed()
     {
+        /** @noinspection DuplicatedCode */
         $unitTestResult     = new UnitTestResult();
         $milliTimespanMock1 = new MilliTimespanMock();
         $testCaseResult1    = new TestCaseResult($milliTimespanMock1);
@@ -272,6 +280,6 @@ class SummaryTests extends UnitTest
         $expected = 33.3333;
         $actual   = $summary->getPercentageFailed();
 
-        return $this->assertEqual($expected, $actual, "", 0.001);
+        $this->assertEqual($expected, $actual, "", 0.001);
     }
 }

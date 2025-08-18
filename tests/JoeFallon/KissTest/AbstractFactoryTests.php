@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest;
 
 use Exception;
@@ -11,7 +13,7 @@ use JoeFallon\KissTest\UnitTest;
  */
 class AbstractFactoryTests extends UnitTest
 {
-    public function test_getRandomFloat_postive()
+    public function test_getRandomFloat_positive()
     {
         $float = ConcreteFactory::getRandomFloat(100, 200, 2);
 

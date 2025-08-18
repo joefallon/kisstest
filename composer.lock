@@ -1,63 +1,21 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "52fe5f10ae7db4509ee0a1b2a45b1078",
-    "content-hash": "65ec11b69589a378ca6b3780cf64d286",
+    "content-hash": "2ac2c43ed28b2f50f1f73a876a6ebbc9",
     "packages": [],
-    "packages-dev": [
-        {
-            "name": "joefallon/phpautoloader",
-            "version": "v2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joefallon/phpautoloader.git",
-                "reference": "940cc57d3219d210e0135355bf329d39a26f30fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joefallon/phpautoloader/zipball/940cc57d3219d210e0135355bf329d39a26f30fd",
-                "reference": "940cc57d3219d210e0135355bf329d39a26f30fd",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "JoeFallon": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joe Fallon",
-                    "email": "joseph.t.fallon@gmail.com",
-                    "homepage": "http://blog.joefallon.net/",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Joe's simple to use and versatile PHP autoloader.",
-            "homepage": "https://github.com/joefallon/phpautoloader",
-            "keywords": [
-                "Simple",
-                "autoloader",
-                "namespace",
-                "psr-0"
-            ],
-            "time": "2015-12-27 17:23:01"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "composer-plugin-api": "^1.0 || ^2.0",
         "php": ">=5.3.0"
     },
-    "platform-dev": []
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }

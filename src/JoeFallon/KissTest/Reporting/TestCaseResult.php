@@ -1,149 +1,90 @@
 <?php
+declare(strict_types=1);
+
 namespace JoeFallon\KissTest\Reporting;
 
 /**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- * @license   MIT
+ * Represents the result of a single test case execution, including timing,
+ * pass/fail status, assertion count, and an optional message.
+ *
+ * This class is responsible for tracking and reporting the outcome of a test case.
  */
 class TestCaseResult
 {
-    /** @var float */
-    private $_executionTimeInMillisecs;
-    /** @var boolean */
-    private $_testPassed;
-    /** @var string */
-    private $_message;
-    /** @var MilliTimespan */
-    private $_milliTimespan;
-    /** @var string */
-    private $_testCaseName;
-    /** @var int */
-    private $_assertCount;
+    private float $executionTimeInMillisecs = 0.0;
+    private bool $testPassed = true;
+    private string $message = '';
+    private MilliTimespan $milliTimespan;
+    private string $testCaseName = '';
+    private int $assertCount = 0;
 
-
-    /**
-     * @param MilliTimespan $milliTimespan
-     */
     public function __construct(MilliTimespan $milliTimespan)
     {
-        $this->_milliTimespan = $milliTimespan;
-        $this->_testPassed    = true;
+        $this->milliTimespan = $milliTimespan;
+        $this->testPassed    = true;
     }
 
-
-    public function startTestCase()
+    public function startTestCase(): void
     {
-        $this->_milliTimespan->startTimer();
+        $this->milliTimespan->startTimer();
     }
 
-
-    /**
-     * @return int
-     */
-    public function getAssertCount()
+    public function getAssertCount(): int
     {
-        return $this->_assertCount;
+        return $this->assertCount;
     }
 
-
-    /**
-     * @param $count
-     */
-    public function setAssertCount($count)
+    public function setAssertCount(int $count): void
     {
-        $this->_assertCount = intval($count);
+        $this->assertCount = $count;
     }
 
-
-    public function stopTestCase()
+    public function stopTestCase(): void
     {
-        $milliTimespan = $this->_milliTimespan;
-        $milliTimespan->stopTimer();
-        $elapsed = $milliTimespan->getElapsedTimeInMilliSec();
-        $this->_executionTimeInMillisecs = $elapsed;
+        $this->milliTimespan->stopTimer();
+        $elapsed = $this->milliTimespan->getElapsedTimeInMilliSec();
+        $this->executionTimeInMillisecs = $elapsed;
     }
 
-
-    /**
-     * @return float
-     */
-    public function getExecutionTimeInMillisecs()
+    public function getExecutionTimeInMillisecs(): float
     {
-        if($this->_executionTimeInMillisecs > 0)
-        {
-            return $this->_executionTimeInMillisecs;
-        }
-        else
-        {
-            return 0;
-        }
+        return $this->executionTimeInMillisecs > 0
+            ? $this->executionTimeInMillisecs
+            : 0.0;
     }
 
-
-    public function setTestPassed()
+    public function setTestPassed(): void
     {
-        $this->_testPassed = true;
+        $this->testPassed = true;
     }
 
-
-    public function setTestFailed()
+    public function setTestFailed(): void
     {
-        $this->_testPassed = false;
+        $this->testPassed = false;
     }
 
-
-    /**
-     * @return boolean
-     */
-    public function getTestStatus()
+    public function getTestStatus(): bool
     {
-        return $this->_testPassed;
+        return $this->testPassed;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getMessage()
+    public function getMessage(): string
     {
-        return $this->_message;
+        return $this->message;
     }
 
-
-    /**
-     * Set the test case message. Typical values for this will be the reasons for
-     * failure, etc.
-     *
-     * @param string $message
-     */
-    public function setMessage($message)
+    public function setMessage(?string $message): void
     {
-        if($message == null)
-        {
-            $this->_message = '';
-        }
-        else
-        {
-            $this->_message = strval($message);
-        }
+        $this->message = $message === null ? '' : $message;
     }
 
-
-    /**
-     * @param string $testCaseName
-     */
-    public function setTestCaseName($testCaseName)
+    public function setTestCaseName(string $testCaseName): void
     {
-        $this->_testCaseName = strval($testCaseName);
+        $this->testCaseName = $testCaseName;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getTestCaseName()
+    public function getTestCaseName(): string
     {
-        return $this->_testCaseName;
+        return $this->testCaseName;
     }
 }

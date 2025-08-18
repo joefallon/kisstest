@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace JoeFallon\KissTest\Reporting;
 
 /**
@@ -8,13 +10,10 @@ namespace JoeFallon\KissTest\Reporting;
  */
 class Report
 {
-    /** @var Summary */
-    private $_summary;
-
+    private Summary $_summary;
 
     /**
-     * Class Constructor
-     * 
+     * Report constructor.
      * @param Summary $summary
      */
     public function __construct(Summary $summary)
@@ -22,13 +21,12 @@ class Report
         $this->_summary = $summary;
     }
 
-
     /**
-     * generate Report
+     * Generates the report output.
      */
-    public function generateReport()
+    public function generateReport(): void
     {
         $summary = $this->_summary;
-        require_once('view-partials/layout.php');
+        require __DIR__ . '/view-partials/layout.php';
     }
 }

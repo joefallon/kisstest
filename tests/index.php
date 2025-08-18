@@ -1,6 +1,10 @@
 <?php
+declare(strict_types=1);
+
 use JoeFallon\KissTest\UnitTest;
-require('config/main.php');
+
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/config/main.php';
 
 new tests\JoeFallon\KissTest\AbstractFactoryTests();
 new tests\JoeFallon\KissTest\MockTests();

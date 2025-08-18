@@ -1,20 +1,30 @@
 <?php
+declare(strict_types=1);
+
 namespace JoeFallon\KissTest;
 
 use Exception;
 
+/**
+ * AbstractFactory provides utility methods for test data factories.
+ *
+ * @package JoeFallon\KissTest
+ */
 abstract class AbstractFactory
 {
-    /** @var int */
-    protected static $_nextSequenceNumber;
-
+    /**
+     * Sequence number for unique test data generation.
+     * @var int|null
+     */
+    protected static ?int $_nextSequenceNumber = null;
 
     /**
+     * Returns the next sequence number for test data.
      * @return int
      */
-    public static function getNextSequenceNumber()
+    public static function getNextSequenceNumber(): int
     {
-        if(self::$_nextSequenceNumber == null)
+        if(self::$_nextSequenceNumber === null)
         {
             self::$_nextSequenceNumber = 0;
         }
@@ -24,21 +34,17 @@ abstract class AbstractFactory
         return self::$_nextSequenceNumber;
     }
 
-
     /**
+     * Returns a random float between $min and $max, rounded to $decimalPlaces.
      * @param float $min
      * @param float $max
-     * @param int   $decimalPlaces
-     *
+     * @param int $decimalPlaces
      * @return float
      */
-    public static function getRandomFloat($min, $max, $decimalPlaces)
+    public static function getRandomFloat(float $min, float $max, int $decimalPlaces): float
     {
-        $min           = floatval($min);
-        $max           = floatval($max);
-        $decimalPlaces = intval($decimalPlaces);
-        $range         = $max - $min;
-        $num           = $min + $range * mt_rand(0, 32767) / 32767;
+        $range = $max - $min;
+        $num   = $min + $range * mt_rand(0, 32767) / 32767;
 
         if($decimalPlaces > 0)
         {
@@ -48,12 +54,10 @@ abstract class AbstractFactory
         return $num;
     }
 
-
     /**
-     * This function instantiates the desired class fills it with data
-     * and returns it. It does not persist the instance.
+     * Instantiates the desired class, fills it with data, and returns it.
+     * Does not persist the instance.
      *
-     * @return mixed
      * @throws Exception
      */
     public static function create()
@@ -61,13 +65,10 @@ abstract class AbstractFactory
         throw new Exception('Method not implemented.');
     }
 
-
     /**
-     * This function instantiates the desired class fills it with data,
-     * persists it to the database and returns it. Additionally, it should
-     * build dependent classes that any foreign keys point to.
+     * Instantiates the desired class, fills it with data, persists it, and returns it.
+     * Should build dependent classes for any foreign keys.
      *
-     * @return mixed
      * @throws Exception
      */
     public static function build()

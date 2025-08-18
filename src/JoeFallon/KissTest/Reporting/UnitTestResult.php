@@ -1,97 +1,69 @@
 <?php
+declare(strict_types=1);
+
 namespace JoeFallon\KissTest\Reporting;
 
+/**
+ * Represents the result of a unit test, including its name, test case results,
+ * and aggregate statistics such as assert count, execution time, and pass/fail rates.
+ *
+ * This class is part of the core reporting logic and is independent of external frameworks.
+ */
 class UnitTestResult
 {
-    /** @var string */
-    private $_unitTestName;
-    /** @var array */
-    private $_testCaseResults;
-
+    private string $_unitTestName = '';
+    private array $_testCaseResults = [];
 
     public function __construct()
     {
-        $this->_testCaseResults = array();
+        $this->_testCaseResults = [];
     }
 
-
-    /**
-     * @return int
-     */
-    public function getAssertCount()
+    public function getAssertCount(): int
     {
         $sum = 0;
-
         foreach($this->_testCaseResults as $result)
         {
             /* @var $result TestCaseResult   */
             $sum += $result->getAssertCount();
         }
-
         return $sum;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getUnitTestName()
+    public function getUnitTestName(): string
     {
         return $this->_unitTestName;
     }
 
-
-    /**
-     * @param string $name
-     */
-    public function setUnitTestName($name)
+    public function setUnitTestName(string $name): void
     {
-        $this->_unitTestName = strval($name);
+        $this->_unitTestName = $name;
     }
 
-
-    /**
-     * @param TestCaseResult $testCaseResult
-     */
-    public function addTestCaseResult(TestCaseResult $testCaseResult)
+    public function addTestCaseResult(TestCaseResult $testCaseResult): void
     {
         $this->_testCaseResults[] = $testCaseResult;
     }
 
-
-    /**
-     * @return int
-     */
-    public function getTestCaseCount()
+    public function getTestCaseCount(): int
     {
         return count($this->_testCaseResults);
     }
 
-
-    /**
-     * @return float
-     */
-    public function getExecutionTimeInMillisecs()
+    public function getExecutionTimeInMillisecs(): float
     {
-        $sum = 0;
-
+        $sum = 0.0;
         foreach($this->_testCaseResults as $result)
         {
             /* @var $result TestCaseResult   */
             $sum += $result->getExecutionTimeInMillisecs();
         }
-
         return $sum;
     }
 
-
-    /**
-     * @return int
-     */
-    public function getNumberTestCasesPass()
+    public function getNumberTestCasesPass(): int
     {
         $sum = 0;
-
         foreach($this->_testCaseResults as $result)
         {
             /* @var $result TestCaseResult */
@@ -100,52 +72,30 @@ class UnitTestResult
                 $sum++;
             }
         }
-
         return $sum;
     }
 
-
-    /**
-     * @return int
-     */
-    public function getNumberTestCasesFailed()
+    public function getNumberTestCasesFailed(): int
     {
-        $fails = $this->getTestCaseCount() - $this->getNumberTestCasesPass();
-        
-        return $fails;
+        return $this->getTestCaseCount() - $this->getNumberTestCasesPass();
     }
 
-
-    /**
-     * @return float
-     */
-    public function getPercentagePassed()
+    public function getPercentagePassed(): float
     {
-        $total  = $this->getTestCaseCount();
-        $total  = floatval($total);
-
-        $passed = $this->getNumberTestCasesPass();
-        $passed = floatval($passed);
-
-        $percentPassed = ( $passed / $total ) * 100;
-
-        return $percentPassed;
+        $total = (float) $this->getTestCaseCount();
+        if($total === 0.0) {
+            return 0.0;
+        }
+        $passed = (float) $this->getNumberTestCasesPass();
+        return ($passed / $total) * 100.0;
     }
 
-
-    /**
-     * @return float
-     */
-    public function getPercentageFailed()
+    public function getPercentageFailed(): float
     {
-        return (100.0 - $this->getPercentagePassed());
+        return 100.0 - $this->getPercentagePassed();
     }
 
-
-    /**
-     * @return array
-     */
-    public function getTestCaseResults()
+    public function getTestCaseResults(): array
     {
         return $this->_testCaseResults;
     }

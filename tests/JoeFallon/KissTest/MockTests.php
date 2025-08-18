@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest;
 
 use Exception;
@@ -31,6 +33,9 @@ class MockTests extends UnitTest
         $this->assertEqual($return, 'b', 'without call count');
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_methodReturnValue_getter_setter()
     {
         $mock = new Mock();
@@ -39,20 +44,20 @@ class MockTests extends UnitTest
         $mock->setMethodReturnValue('testMethod', 'c', 3);
         $mock->setMethodReturnValue('testMethod', 'd', 4);
 
-        $this->assertEqual($mock->methodCalled('testMethod', array(1, 2)), 'a');
-        $this->assertEqual($mock->methodCalled('testMethod', array(3, 4)), 'b');
-        $this->assertEqual($mock->methodCalled('testMethod', array(5, 6)), 'c');
-        $this->assertEqual($mock->methodCalled('testMethod', array(7, 8)), 'd');
+        $this->assertEqual($mock->methodCalled('testMethod', [1, 2]), 'a');
+        $this->assertEqual($mock->methodCalled('testMethod', [3, 4]), 'b');
+        $this->assertEqual($mock->methodCalled('testMethod', [5, 6]), 'c');
+        $this->assertEqual($mock->methodCalled('testMethod', [7, 8]), 'd');
 
         $mock->setMethodReturnValue('otherMethod', 'z');
-        $mock->methodCalled('otherMethod', array(1, 2));
-        $this->assertEqual($mock->methodCalled('otherMethod', array(1, 2)), 'z');
-        $mock->methodCalled('otherMethod', array(1, 2));
-        $this->assertEqual($mock->methodCalled('otherMethod', array(1, 2)), 'z');
-        $mock->methodCalled('otherMethod', array(1, 2));
-        $this->assertEqual($mock->methodCalled('otherMethod', array(1, 2)), 'z');
-        $mock->methodCalled('otherMethod', array(1, 2));
-        $this->assertEqual($mock->methodCalled('otherMethod', array(1, 2)), 'z');
+        $mock->methodCalled('otherMethod', [1, 2]);
+        $this->assertEqual($mock->methodCalled('otherMethod', [1, 2]), 'z');
+        $mock->methodCalled('otherMethod', [1, 2]);
+        $this->assertEqual($mock->methodCalled('otherMethod', [1, 2]), 'z');
+        $mock->methodCalled('otherMethod', [1, 2]);
+        $this->assertEqual($mock->methodCalled('otherMethod', [1, 2]), 'z');
+        $mock->methodCalled('otherMethod', [1, 2]);
+        $this->assertEqual($mock->methodCalled('otherMethod', [1, 2]), 'z');
 
     }
 
@@ -72,25 +77,28 @@ class MockTests extends UnitTest
         $this->testFail();
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_getMethodArgs_returns_correct_args()
     {
         $mock = new Mock();
-        $mock->methodCalled('testMethod', array(1, 2));
+        $mock->methodCalled('testMethod', [1, 2]);
         $args = $mock->getMethodArgs('testMethod', 1);
         $this->assertEqual($args[0], 1);
         $this->assertEqual($args[1], 2);
 
-        $mock->methodCalled('testMethod', array(3, 4));
+        $mock->methodCalled('testMethod', [3, 4]);
         $args = $mock->getMethodArgs('testMethod', 2);
         $this->assertEqual($args[0], 3);
         $this->assertEqual($args[1], 4);
 
-        $mock->methodCalled('testMethod', array(5, 6));
+        $mock->methodCalled('testMethod', [5, 6]);
         $args = $mock->getMethodArgs('testMethod', 3);
         $this->assertEqual($args[0], 5);
         $this->assertEqual($args[1], 6);
 
-        $mock->methodCalled('testMethod', array(7, 8));
+        $mock->methodCalled('testMethod', [7, 8]);
         $args = $mock->getMethodArgs('testMethod', 4);
         $this->assertEqual($args[0], 7);
         $this->assertEqual($args[1], 8);
@@ -161,6 +169,9 @@ class MockTests extends UnitTest
         $this->testFail();
     }
 
+    /**
+     * @throws Exception
+     */
     public function test_getMethodCallCount_returns_correct_count()
     {
         $mock = new Mock();
@@ -182,7 +193,7 @@ class MockTests extends UnitTest
         $count = $mock->getMethodCallCount('testMethod');
         $this->assertEqual($count, 2);
 
-        $mock->methodCalled('thirdMethod', array('1', 2, 'three'));
+        $mock->methodCalled('thirdMethod', ['1', 2, 'three']);
         $count = $mock->getMethodCallCount('thirdMethod');
         $this->assertEqual($count, 1);
         $count = $mock->getMethodCallCount('testMethod');

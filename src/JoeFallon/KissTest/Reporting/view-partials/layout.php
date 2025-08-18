@@ -1,48 +1,37 @@
+<?php
+declare(strict_types=1);
+/**
+ * @var \JoeFallon\KissTest\Reporting\Summary $summary
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php /* @var $summary \JoeFallon\KissTest\Reporting\Summary */ ?>
-
     <?php
-
-    $sumarry_result_status = 'FAIL';
+    $summary_result_status = 'FAIL';
     $result_class = 'test-fail';
-
-    if(!$summary->getTestCasesFailedCount())
-    {
-        $sumarry_result_status = 'PASS';
+    if (!$summary->getTestCasesFailedCount()) {
+        $summary_result_status = 'PASS';
         $result_class = 'test-pass';
     }
-
     ?>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Unit Tests | <?php echo $sumarry_result_status ?></title>
-
-    <style media="screen" type="text/css">
-    <?php require_once(realpath(dirname(__FILE__) . '/../css/bootstrap-custom.css')); ?>
+    <title>Unit Tests | <?php echo htmlspecialchars($summary_result_status, ENT_QUOTES, 'UTF-8'); ?></title>
+    <style type="text/css">
+    <?php require(__DIR__ . '/../css/bootstrap-custom.css'); ?>
     </style>
-
-    <style media="screen" type="text/css">
-    <?php require_once(realpath(dirname(__FILE__) . '/../css/theme.css')); ?>
+    <style type="text/css">
+    <?php require(__DIR__ . '/../css/theme.css'); ?>
     </style>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <![endif]-->
 </head>
 <body>
     <div class="container">
-
-        <?php /* @var $summary \JoeFallon\KissTest\Reporting\Summary */ ?>
-        <?php require_once(realpath(dirname(__FILE__) . '/header.php')); ?>
-
+        <?php require(__DIR__ . '/header.php'); ?>
         <?php
-        foreach($summary->getUnitTestsResults() as $result)
-        {
-            /* @var $result \JoeFallon\KissTest\Reporting\UnitTestResult */
+        $temp = [];
+
+        foreach ($summary->getUnitTestsResults() as $result) {
             $temp[] = $result->getUnitTestName();
         }
 

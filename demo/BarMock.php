@@ -1,4 +1,5 @@
 <?php
+namespace demo;
 /**
  * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
  *

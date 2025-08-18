@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\TestCaseResult;
@@ -17,7 +19,7 @@ class TestCaseResultTests extends UnitTest
         $testCaseResult    = new TestCaseResult($milliTimespanMock);
         $time              = $testCaseResult->getExecutionTimeInMillisecs();
 
-        return $this->assertFirstGreaterThanOrEqualSecond($time, 0);
+        $this->assertFirstGreaterThanOrEqualSecond($time, 0);
     }
 
 
@@ -29,7 +31,7 @@ class TestCaseResultTests extends UnitTest
         $testCaseResult->stopTestCase();
         $elapsedTime       = $testCaseResult->getExecutionTimeInMillisecs();
         
-        return $this->assertFirstGreaterThanSecond($elapsedTime, 0);
+        $this->assertFirstGreaterThanSecond($elapsedTime, 0);
     }
 
 
@@ -41,7 +43,7 @@ class TestCaseResultTests extends UnitTest
         $testCaseResult->stopTestCase();
         $elapsedTime       = $testCaseResult->getExecutionTimeInMillisecs();
 
-        return $this->assertTrue($milliTimespanMock->_startTimerCalled);
+        $this->assertTrue($milliTimespanMock->_startTimerCalled);
     }
 
     
@@ -53,7 +55,6 @@ class TestCaseResultTests extends UnitTest
         $testCaseResult->stopTestCase();
         $elapsedTime       = $testCaseResult->getExecutionTimeInMillisecs();
 
-        return $this->assertTrue($milliTimespanMock->_stopTimerCalled);
+        $this->assertTrue($milliTimespanMock->_stopTimerCalled);
     }
-
 }

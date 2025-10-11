@@ -1,25 +1,26 @@
-<?php
-namespace demo;
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
+<?php declare(strict_types=1);
 
+namespace Demo;
+
+/**
+ * @author Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright 2014-2025 Joseph Fallon
+ * @license MIT
+ */
 class Foo
 {
-    private $_bar;
+    private Bar $_bar;
 
     public function __construct(Bar $bar)
     {
         $this->_bar = $bar;
     }
 
-    public function methodFoo()
+    public function methodFoo(): string
     {
         $bar = $this->_bar;
-        return $bar->methodBar(1, 'two');
+        $result = $bar->methodBar(1, 'two');
+
+        return $result;
     }
 }

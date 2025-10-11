@@ -1,7 +1,6 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
-namespace tests\JoeFallon\KissTest;
+namespace Tests\JoeFallon\KissTest;
 
 use JoeFallon\KissTest\UnitTest;
 
@@ -13,7 +12,7 @@ use JoeFallon\KissTest\UnitTest;
  *
  * Follows AAA (Arrange, Act, Assert) pattern and FIRST principles.
  */
-class UnitTestTests extends UnitTest
+class UnitTestTest extends UnitTest
 {
     public function test_assertEqual()
     {

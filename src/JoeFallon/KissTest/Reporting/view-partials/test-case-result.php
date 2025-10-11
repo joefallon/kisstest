@@ -1,18 +1,18 @@
-<?php
-declare(strict_types=1);
-/**
- * @var \JoeFallon\KissTest\Reporting\UnitTestResult $result
- * @var \JoeFallon\KissTest\Reporting\TestCaseResult $current
- * @var int $i
- */
+<?php declare(strict_types=1);
+
+use JoeFallon\KissTest\Reporting\UnitTestResult;
+
+/** @var UnitTestResult $result */
 $testCaseResults = $result->getTestCaseResults();
+
+/** @var int $i */
 $current = $testCaseResults[$i];
 
-$testResult = $current->getTestStatus() ? 'test-pass' : 'test-fail';
-$testCaseName = htmlspecialchars($current->getTestCaseName(), ENT_QUOTES, 'UTF-8');
-$message = htmlspecialchars($current->getMessage(), ENT_QUOTES, 'UTF-8');
+$testResult    = $current->getTestStatus() ? 'test-pass' : 'test-fail';
+$testCaseName  = htmlspecialchars($current->getTestCaseName(), ENT_QUOTES, 'UTF-8');
+$message       = htmlspecialchars($current->getMessage(), ENT_QUOTES, 'UTF-8');
 $executionTime = $current->getExecutionTimeInMillisecs();
-$assertCount = htmlspecialchars(number_format($current->getAssertCount()), ENT_QUOTES, 'UTF-8');
+$assertCount   = $current->getAssertCount();
 ?>
 
 <tbody>

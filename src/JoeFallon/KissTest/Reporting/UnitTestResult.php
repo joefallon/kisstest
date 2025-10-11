@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace JoeFallon\KissTest\Reporting;
 
@@ -11,8 +10,8 @@ namespace JoeFallon\KissTest\Reporting;
  */
 class UnitTestResult
 {
-    private string $_unitTestName = '';
-    private array $_testCaseResults = [];
+    private string $_unitTestName    = '';
+    private array  $_testCaseResults = [];
 
     public function __construct()
     {
@@ -24,9 +23,10 @@ class UnitTestResult
         $sum = 0;
         foreach($this->_testCaseResults as $result)
         {
-            /* @var $result TestCaseResult   */
+            /* @var $result TestCaseResult */
             $sum += $result->getAssertCount();
         }
+
         return $sum;
     }
 
@@ -55,9 +55,10 @@ class UnitTestResult
         $sum = 0.0;
         foreach($this->_testCaseResults as $result)
         {
-            /* @var $result TestCaseResult   */
+            /* @var $result TestCaseResult */
             $sum += $result->getExecutionTimeInMillisecs();
         }
+
         return $sum;
     }
 
@@ -72,6 +73,7 @@ class UnitTestResult
                 $sum++;
             }
         }
+
         return $sum;
     }
 
@@ -82,11 +84,13 @@ class UnitTestResult
 
     public function getPercentagePassed(): float
     {
-        $total = (float) $this->getTestCaseCount();
-        if($total === 0.0) {
+        $total = (float)$this->getTestCaseCount();
+        if($total === 0.0)
+        {
             return 0.0;
         }
-        $passed = (float) $this->getNumberTestCasesPass();
+        $passed = (float)$this->getNumberTestCasesPass();
+
         return ($passed / $total) * 100.0;
     }
 

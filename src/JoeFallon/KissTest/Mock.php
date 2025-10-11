@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace JoeFallon\KissTest;
 
@@ -12,7 +11,7 @@ use Exception;
  */
 class Mock
 {
-    private array $_methodCalls = [];
+    private array $_methodCalls        = [];
     private array $_methodReturnValues = [];
 
     /**
@@ -43,6 +42,7 @@ class Mock
      * Returns the number of times the specified method has been called.
      *
      * @param string $methodName
+     *
      * @return int
      * @throws Exception
      */
@@ -70,7 +70,8 @@ class Mock
      * Returns the arguments supplied to a method for the specified call count of the method.
      *
      * @param string $methodName
-     * @param int $callCount
+     * @param int    $callCount
+     *
      * @return mixed
      * @throws Exception
      */
@@ -101,7 +102,7 @@ class Mock
             }
         }
 
-        $msg  = 'The given call count is less than the number of ';
+        $msg = 'The given call count is less than the number of ';
         $msg .= 'times the method was called.';
         $msg .= ' Method Name = ' . $methodName . ', ';
         $msg .= ' Given Call Count = ' . $callCount . ', ';
@@ -113,9 +114,10 @@ class Mock
     /**
      * Sets the return value for a method, optionally for a specific call count.
      *
-     * @param string $methodName
-     * @param mixed $returnVal
+     * @param string   $methodName
+     * @param mixed    $returnVal
      * @param int|null $callCount
+     *
      * @throws Exception
      */
     public function setMethodReturnValue(string $methodName, $returnVal = null, ?int $callCount = null): void
@@ -130,6 +132,7 @@ class Mock
             if($value['name'] === $methodName && $value['callCount'] === $callCount)
             {
                 $value['return'] = $returnVal;
+
                 return;
             }
         }
@@ -144,8 +147,9 @@ class Mock
     /**
      * Gets the return value for a method, optionally for a specific call count.
      *
-     * @param string $methodName
+     * @param string   $methodName
      * @param int|null $callCount
+     *
      * @return mixed|null
      * @throws Exception
      */

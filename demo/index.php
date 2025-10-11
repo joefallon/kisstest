@@ -1,23 +1,20 @@
-<?php
-declare(strict_types=1);
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
-require_once __DIR__ . '/../vendor/autoload.php';
+<?php declare(strict_types=1);
 
-require('config/main.php');
+/**
+ * @author Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright 2014-2025 Joseph Fallon
+ * @license MIT
+ */
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+require_once __DIR__ . '/config/main.php';
 
 use JoeFallon\KissTest\UnitTest;
 
-
-new demo\MocksUsage();
-new demo\ToStringTest();
-new demo\DummyTest();
-new demo\AnotherDummyTest();
+new Demo\MocksUsage();
+new Demo\ToStringTest();
+new Demo\DummyTest();
+new Demo\AnotherDummyTest();
 
 
 UnitTest::getAllUnitTestsSummary();

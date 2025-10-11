@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace JoeFallon\KissTest;
 
@@ -14,12 +13,14 @@ abstract class AbstractFactory
 {
     /**
      * Sequence number for unique test data generation.
+     *
      * @var int|null
      */
     protected static ?int $_nextSequenceNumber = null;
 
     /**
      * Returns the next sequence number for test data.
+     *
      * @return int
      */
     public static function getNextSequenceNumber(): int
@@ -36,15 +37,17 @@ abstract class AbstractFactory
 
     /**
      * Returns a random float between $min and $max, rounded to $decimalPlaces.
+     *
      * @param float $min
      * @param float $max
-     * @param int $decimalPlaces
+     * @param int   $decimalPlaces
+     *
      * @return float
      */
     public static function getRandomFloat(float $min, float $max, int $decimalPlaces): float
     {
         $range = $max - $min;
-        $num   = $min + $range * mt_rand(0, 32767) / 32767;
+        $num = $min + $range * mt_rand(0, 32767) / 32767;
 
         if($decimalPlaces > 0)
         {

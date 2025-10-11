@@ -1,7 +1,6 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
-namespace tests\JoeFallon\KissTest\Reporting;
+namespace Tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\MilliTimespan;
 use JoeFallon\KissTest\UnitTest;
@@ -11,19 +10,19 @@ use JoeFallon\KissTest\UnitTest;
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
  */
-class MilliTimespanTests extends UnitTest
+class MilliTimespanTest extends UnitTest
 {
     public function test_elapsed_time_is_always_zero_if_not_started()
     {
         $timespan = new MilliTimespan();
         $expected = 0.0;
         usleep(100);
-        $actual   = $timespan->getElapsedTimeInMilliSec();
+        $actual = $timespan->getElapsedTimeInMilliSec();
 
         $this->assertEqual($expected, $actual, "", 0.01);
     }
 
-    
+
     public function test_elapsed_time_is_positive_if_started()
     {
         $timespan = new MilliTimespan();

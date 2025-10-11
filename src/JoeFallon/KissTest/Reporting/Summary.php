@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace JoeFallon\KissTest\Reporting;
 
@@ -35,35 +34,42 @@ class Summary
     public function getNumberOfAsserts(): string
     {
         $total = 0;
-        foreach ($this->_unitTestResults as $result) {
+        foreach($this->_unitTestResults as $result)
+        {
             /* @var $result UnitTestResult */
             $total += $result->getAssertCount();
         }
+
         return number_format($total);
     }
 
     public function getTestCasesCount(): int
     {
         $total = 0;
-        foreach ($this->_unitTestResults as $result) {
+        foreach($this->_unitTestResults as $result)
+        {
             $total += $result->getTestCaseCount();
         }
+
         return $total;
     }
 
     public function getTestCasesPassedCount(): int
     {
         $totalPassed = 0;
-        foreach ($this->_unitTestResults as $result) {
+        foreach($this->_unitTestResults as $result)
+        {
             $totalPassed += $result->getNumberTestCasesPass();
         }
+
         return $totalPassed;
     }
 
     public function getTestCasesFailedCount(): int
     {
-        $total  = $this->getTestCasesCount();
+        $total = $this->getTestCasesCount();
         $passed = $this->getTestCasesPassedCount();
+
         return $total - $passed;
     }
 
@@ -71,17 +77,22 @@ class Summary
     {
         self::$_timer->stopTimer();
         $totalTime = self::$_timer->getElapsedTimeInMilliSec();
+
         return $totalTime;
     }
 
     public function getPercentagePassed(): float
     {
         $total = $this->getTestCasesCount();
-        if ($total === 0) {
+
+        if($total === 0)
+        {
             return 100.0;
         }
+
         $passed = $this->getTestCasesPassedCount();
         $percentPassed = ($passed / $total) * 100.0;
+
         return $percentPassed;
     }
 

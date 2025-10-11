@@ -1,15 +1,18 @@
-<?php
-namespace demo;
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
+<?php declare(strict_types=1);
 
+namespace Demo;
+
+/**
+ * @author Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright 2014-2025 Joseph Fallon
+ * @license MIT
+ */
 class Bar
 {
+    /**
+     * @param $intA
+     * @param $intB
+     */
     public function __construct($intA, $intB)
     {
 

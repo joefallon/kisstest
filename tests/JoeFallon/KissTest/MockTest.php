@@ -1,7 +1,6 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
-namespace tests\JoeFallon\KissTest;
+namespace Tests\JoeFallon\KissTest;
 
 use Exception;
 use JoeFallon\KissTest\Mock;
@@ -12,23 +11,25 @@ use JoeFallon\KissTest\UnitTest;
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
  */
-
-class MockTests extends UnitTest
+class MockTest extends UnitTest
 {
+    /**
+     * @throws Exception
+     */
     public function test_setMethodReturnValue_properly_overwrites_previous_sets()
     {
         $mock = new Mock();
         $mock->setMethodReturnValue('testMethod', 'a', 1);
         $mock->setMethodReturnValue('testMethod', 'c', 2);
         $mock->setMethodReturnValue('testMethod', 'b', 1);
-        $return = $mock->methodCalled('testMethod', array(1, 2));
+        $return = $mock->methodCalled('testMethod', [1, 2]);
 
         $this->assertEqual($return, 'b', 'with call count');
 
         $mock = new Mock();
         $mock->setMethodReturnValue('testMethod', 'a');
         $mock->setMethodReturnValue('testMethod', 'b');
-        $return = $mock->methodCalled('testMethod', array(1, 2));
+        $return = $mock->methodCalled('testMethod', [1, 2]);
 
         $this->assertEqual($return, 'b', 'without call count');
     }
@@ -71,6 +72,7 @@ class MockTests extends UnitTest
         catch(Exception $e)
         {
             $this->testPass();
+
             return;
         }
 
@@ -115,6 +117,7 @@ class MockTests extends UnitTest
         catch(Exception $e)
         {
             $this->testPass();
+
             return;
         }
 
@@ -131,6 +134,7 @@ class MockTests extends UnitTest
         catch(Exception $e)
         {
             $this->testPass();
+
             return;
         }
 
@@ -147,6 +151,7 @@ class MockTests extends UnitTest
         catch(Exception $e)
         {
             $this->testPass();
+
             return;
         }
 
@@ -163,6 +168,7 @@ class MockTests extends UnitTest
         catch(Exception $e)
         {
             $this->testPass();
+
             return;
         }
 
@@ -199,5 +205,15 @@ class MockTests extends UnitTest
         $count = $mock->getMethodCallCount('testMethod');
         $this->assertEqual($count, 2);
     }
-}
 
+    /**
+     * @throws Exception
+     */
+    public function test_mock_method_call_count_and_args()
+    {
+        $m = new Mock();
+        $m->setMethodReturnValue('foo', 'bar');
+        $this->assertEqual($m->methodCalled('foo'), 'bar');
+        $this->assertEqual($m->getMethodCallCount('foo'), 1);
+    }
+}

@@ -23,9 +23,13 @@
     },
     "autoload": {
         "psr-4": {
-            "JoeFallon\\": "src/JoeFallon/",
-            "demo\\": "demo/",
-            "tests\\": "tests/"
+            "JoeFallon\\": "src/JoeFallon/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Demo\\": "demo/",
+            "Tests\\": "tests/"
         }
     }
 }

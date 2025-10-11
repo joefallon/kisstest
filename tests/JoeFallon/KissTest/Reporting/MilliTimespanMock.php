@@ -2,7 +2,7 @@
 /** @noinspection PhpMissingParentCallCommonInspection */
 declare(strict_types=1);
 
-namespace tests\JoeFallon\KissTest\Reporting;
+namespace Tests\JoeFallon\KissTest\Reporting;
 
 use JoeFallon\KissTest\Reporting\MilliTimespan;
 
@@ -13,18 +13,17 @@ use JoeFallon\KissTest\Reporting\MilliTimespan;
  */
 class MilliTimespanMock extends MilliTimespan
 {
-    public bool $_startTimerCalled;
-    public bool $_stopTimerCalled;
-
+    public bool $startTimerCalled = false;
+    public bool $stopTimerCalled  = false;
 
     public function startTimer(): void
     {
-        $this->_startTimerCalled = true;
+        $this->startTimerCalled = true;
     }
 
     public function stopTimer(): void
     {
-        $this->_stopTimerCalled = true;
+        $this->stopTimerCalled = true;
     }
 
     public function getElapsedTimeInMilliSec(): float

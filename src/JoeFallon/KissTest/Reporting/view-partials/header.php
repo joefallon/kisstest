@@ -1,22 +1,21 @@
-<?php
-declare(strict_types=1);
-/**
- * @var \JoeFallon\KissTest\Reporting\Summary $summary
- */
+<?php declare(strict_types=1);
+
+use JoeFallon\KissTest\Reporting\Summary;
 
 $summary_result_status = 'FAIL';
 $result_class = 'test-fail';
 
+/** @var Summary $summary */
 if(!$summary->getTestCasesFailedCount())
 {
     $summary_result_status = 'PASS';
     $result_class = 'test-pass';
 }
 
-$numberOfAsserts = htmlspecialchars($summary->getNumberOfAsserts(), ENT_QUOTES, 'UTF-8');
-$countPassed     = htmlspecialchars((string)$summary->getTestCasesPassedCount(), ENT_QUOTES, 'UTF-8');
-$countFailed     = htmlspecialchars((string)$summary->getTestCasesFailedCount(), ENT_QUOTES, 'UTF-8');
-$countTestCases  = htmlspecialchars((string)$summary->getTestCasesCount(), ENT_QUOTES, 'UTF-8');
+$numberOfAsserts = $summary->getNumberOfAsserts();
+$countPassed     = $summary->getTestCasesPassedCount();
+$countFailed     = $summary->getTestCasesFailedCount();
+$countTestCases  = $summary->getTestCasesCount();
 ?>
 <div id="test-results-header" class="row <?= $result_class ?> text-center">
     <div class="span3 text-center <?= $result_class ?>" id="test-results">
@@ -25,15 +24,15 @@ $countTestCases  = htmlspecialchars((string)$summary->getTestCasesCount(), ENT_Q
         <h5>Number of Asserts: <?= $numberOfAsserts ?></h5>
     </div>
     <div class="span3 text-center <?= $result_class ?>">
-        <h4>Tests Passed: <?= $countPassed ?><br />
+        <h4>Tests Passed: <?= $countPassed ?><br/>
             (<?php printf("%.2f", $summary->getPercentagePassed()); ?>%)</h4>
     </div>
     <div class="span3 text-center <?= $result_class ?>">
-        <h4>Tests Failed: <?= $countFailed ?><br />
+        <h4>Tests Failed: <?= $countFailed ?><br/>
             (<?php printf("%.2f", $summary->getPercentageFailed()); ?>%)</h4>
     </div>
     <div class="span3 text-center <?= $result_class ?>">
-        <h4>Total Tests: <?= $countTestCases ?><br />
+        <h4>Total Tests: <?= $countTestCases ?><br/>
             (<?php printf("%.2f", $summary->getExecutionTimeInMillisecs()); ?> mSecs)</h4>
     </div>
 </div>

@@ -1,8 +1,7 @@
-<?php
-declare(strict_types=1);
-/**
- * @var \JoeFallon\KissTest\Reporting\Summary $summary
- */
+<?php declare(strict_types=1);
+
+/** @var Summary $summary */
+use JoeFallon\KissTest\Reporting\Summary;
 ?>
 <!DOCTYPE html>
 <html lang="en">

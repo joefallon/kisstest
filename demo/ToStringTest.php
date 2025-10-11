@@ -1,28 +1,35 @@
-<?php
-namespace demo;
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
+<?php declare(strict_types=1);
+
+namespace Demo;
+
 use JoeFallon\KissTest\UnitTest;
 
-
+/**
+ * @author Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright 2014-2025 Joseph Fallon
+ * @license MIT
+ */
 class ToStringTest extends UnitTest
 {
-    public function test_class_assert_equal()
+    public function test_to_string()
     {
-        $ex1 = new ExampleClass();
-        $ex2 = new ExampleClass();
-
-
-        $this->assertEqual($ex1, $ex2);
+        $exampleClass = new ExampleClass();
+        $this->assertEqual('example', (string)$exampleClass);
     }
 }
 
+/**
+ * ExampleClass provides a string representation for demonstration purposes.
+ *
+ * @package Demo
+ */
 class ExampleClass
 {
-    public $a;
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return 'example';
+    }
 }

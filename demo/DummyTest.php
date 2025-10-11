@@ -1,22 +1,21 @@
-<?php
-namespace demo;
-/**
- * @author    Joseph Fallon <joseph.t.fallon@gmail.com>
- *
- * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
- *
- * @license   MIT
- */
+<?php declare(strict_types=1);
+
+namespace Demo;
+
 use JoeFallon\KissTest\UnitTest;
 
-
+/**
+ * @author Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright 2014-2025 Joseph Fallon
+ * @license MIT
+ */
 class DummyTest extends UnitTest
 {
     public function test_demo_fail()
     {
         $this->notImplementedFail();
     }
-    
+
     public function test_demo_fail2()
     {
         $this->testFail();

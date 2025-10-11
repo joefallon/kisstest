@@ -1,19 +1,20 @@
-<?php
-declare(strict_types=1);
-/**
- * @var \JoeFallon\KissTest\Reporting\UnitTestResult $result
- */
+<?php declare(strict_types=1);
 
-$unitTestName = htmlspecialchars(str_replace('\\', '_', $result->getUnitTestName()), ENT_QUOTES, 'UTF-8');
-$numTestCasesFailed = htmlspecialchars((string)$result->getNumberTestCasesFailed(), ENT_QUOTES, 'UTF-8');
-$numTestCasesPassed = htmlspecialchars((string)$result->getNumberTestCasesPass(), ENT_QUOTES, 'UTF-8');
-$assertCount = htmlspecialchars((string)$result->getAssertCount(), ENT_QUOTES, 'UTF-8');
-$totalTestCases = htmlspecialchars((string)$result->getTestCaseCount(), ENT_QUOTES, 'UTF-8');
+use JoeFallon\KissTest\Reporting\UnitTestResult;
 
+/** @var UnitTestResult $result */
+$unitTestName = str_replace('\\', '_', $result->getUnitTestName());
+$unitTestName = htmlspecialchars($unitTestName, ENT_QUOTES, 'UTF-8');
+
+$numTestCasesFailed = $result->getNumberTestCasesFailed();
+$numTestCasesPassed = $result->getNumberTestCasesPass();
+$assertCount        = $result->getAssertCount();
+$totalTestCases     = $result->getTestCaseCount();
+$executionTime      = sprintf("%.2f", $result->getExecutionTimeInMillisecs());
 ?>
 <div class="row test-set-name">
     <div class="span12">
-        <a name="<?= $unitTestName ?>"></a>
+        <a id="<?= $unitTestName ?>"></a>
         <h4><?= $unitTestName ?></h4>
     </div>
 </div>
@@ -22,10 +23,10 @@ $totalTestCases = htmlspecialchars((string)$result->getTestCaseCount(), ENT_QUOT
         Tests Failed: <?= $numTestCasesFailed ?>,
         Tests Passed: <?= $numTestCasesPassed ?>,
         Asserts:      <?= $assertCount ?>,
-        Total Tests:  <?= $totalTestCases ?>
-        (<?php printf("%.2f", $result->getExecutionTimeInMillisecs()); ?> mSec)
+        Total Tests:  <?= $totalTestCases ?> (<?= $executionTime ?> mSec)
     </div>
     <div class="span1 top-link text-right">
+        <!--suppress HtmlUnknownAnchorTarget -->
         <a href="#top">top</a>
     </div>
 </div>

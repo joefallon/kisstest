@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace JoeFallon\KissTest\Reporting;
 
@@ -11,17 +10,17 @@ namespace JoeFallon\KissTest\Reporting;
  */
 class TestCaseResult
 {
-    private float $executionTimeInMillisecs = 0.0;
-    private bool $testPassed = true;
-    private string $message = '';
+    private float         $executionTimeInMillisecs = 0.0;
+    private bool          $testPassed               = true;
+    private string        $message                  = '';
     private MilliTimespan $milliTimespan;
-    private string $testCaseName = '';
-    private int $assertCount = 0;
+    private string        $testCaseName             = '';
+    private int           $assertCount              = 0;
 
     public function __construct(MilliTimespan $milliTimespan)
     {
         $this->milliTimespan = $milliTimespan;
-        $this->testPassed    = true;
+        $this->testPassed = true;
     }
 
     public function startTestCase(): void

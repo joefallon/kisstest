@@ -1,7 +1,6 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
-namespace tests\JoeFallon\KissTest;
+namespace Tests\JoeFallon\KissTest;
 
 use Exception;
 use JoeFallon\KissTest\UnitTest;
@@ -11,7 +10,7 @@ use JoeFallon\KissTest\UnitTest;
  * @copyright Copyright 2014 Joseph Fallon (All rights reserved)
  * @license   MIT
  */
-class AbstractFactoryTests extends UnitTest
+class AbstractFactoryTest extends UnitTest
 {
     public function test_getRandomFloat_positive()
     {
@@ -74,5 +73,12 @@ class AbstractFactoryTests extends UnitTest
         }
 
         $this->testFail();
+    }
+
+    public function test_sequence_number()
+    {
+        $n1 = \Tests\JoeFallon\KissTest\ConcreteFactory::getNextSequenceNumber();
+        $n2 = \Tests\JoeFallon\KissTest\ConcreteFactory::getNextSequenceNumber();
+        $this->assertTrue($n2 === $n1 + 1);
     }
 }

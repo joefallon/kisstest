@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace JoeFallon\KissTest\Reporting;
 
@@ -14,6 +13,7 @@ class Report
 
     /**
      * Report constructor.
+     *
      * @param Summary $summary
      */
     public function __construct(Summary $summary)

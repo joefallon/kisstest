@@ -1,17 +1,22 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
+
+/**
+ * @author Joseph Fallon <joseph.t.fallon@gmail.com>
+ * @copyright 2014-2025 Joseph Fallon
+ * @license MIT
+ */
 
 use JoeFallon\KissTest\UnitTest;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config/main.php';
 
-new tests\JoeFallon\KissTest\AbstractFactoryTests();
-new tests\JoeFallon\KissTest\MockTests();
-new tests\JoeFallon\KissTest\UnitTestTests();
-new tests\JoeFallon\KissTest\Reporting\MilliTimespanTests();
-new tests\JoeFallon\KissTest\Reporting\SummaryTests();
-new tests\JoeFallon\KissTest\Reporting\TestCaseResultTests();
-new tests\JoeFallon\KissTest\Reporting\UnitTestResultTests();
+new Tests\JoeFallon\KissTest\AbstractFactoryTest();
+new Tests\JoeFallon\KissTest\MockTest();
+new Tests\JoeFallon\KissTest\UnitTestTest();
+new Tests\JoeFallon\KissTest\Reporting\MilliTimespanTest();
+new Tests\JoeFallon\KissTest\Reporting\SummaryTest();
+new Tests\JoeFallon\KissTest\Reporting\TestCaseResultTest();
+new Tests\JoeFallon\KissTest\Reporting\UnitTestResultTest();
 
 UnitTest::getAllUnitTestsSummary();
